@@ -1,0 +1,6 @@
+django==4.0
+sklearn==0.0
+tensorflow==2.8.0
+yfinance==0.1.70
+alpaca_trade_api
+yahoo_finance==1.4.0
