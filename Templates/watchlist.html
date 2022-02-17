@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html  >
 <head>
@@ -7,28 +6,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="{% static 'assets/images/sight-2-400x428.png' %}" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/images/sight-2-400x428.png" type="image/x-icon">
   <meta name="description" content="Watchlist page for SIGHT: AI Stock Market Analysis and Prediction Web Application. Keep track of stocks you're interested in.">
   
   
   <title>Watch-List</title>
-  <link rel="stylesheet" href="{% static 'assets/Material-Design-Icons/css/material.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/icon54/style.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/icon54-v4/style.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-grid.min.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-reboot.min.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/web/assets/gdpr-plugin/gdpr-styles.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/animatecss/animate.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/dropdown/css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/socicon/css/styles.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/theme/css/style.css' %}">
+  <link rel="stylesheet" href="assets/Material-Design-Icons/css/material.css">
+  <link rel="stylesheet" href="assets/icon54/style.css">
+  <link rel="stylesheet" href="assets/icon54-v4/style.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/web/assets/gdpr-plugin/gdpr-styles.css">
+  <link rel="stylesheet" href="assets/animatecss/animate.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="{% static 'assets/mobirise/css/mbr-additional.css' %}"><link rel="stylesheet" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" type="text/css">
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
-  
-  
+  <script src="https://cdn.jsdelivr.net/npm/luxon@1.26.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.1/dist/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+  <script src="assets/chartjs-chart-financial.js"></script>
   
 
 </head>
@@ -36,12 +37,12 @@
   
   <section data-bs-version="5.1" class="menu menu2 cid-sMlXCje7Dw" once="menu" id="menu2-4a">
     
-    <nav class="navbar navbar-dropdown navbar-expand-lg">
+    <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
         <div class="container-fluid">
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="landing.html">
-                        <img src="{% static 'assets/images/sight-2-400x428.png' %}" alt="" style="height: 5.8rem;">
+                        <img src="assets/images/sight-2-400x428.png" alt="" style="height: 3rem;">
                     </a>
                 </span>
                 
@@ -55,7 +56,7 @@
                 </div>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item dropdown"><a class="nav-link link text-black text-primary dropdown-toggle show display-4" href="index.html#testimonials3-1u" data-bs-auto-close="outside" aria-expanded="false" data-toggle="dropdown-submenu" data-bs-toggle="dropdown">Dashboard</a><div class="dropdown-menu show" aria-labelledby="dropdown-undefined" data-bs-popper="none"><a class="text-black text-primary dropdown-item display-4" href="dashboardindex.html"><span class="icon54-v4-line-chart mbr-iconfont mbr-iconfont-btn"></span>Index</a><a class="text-black text-primary dropdown-item display-4" href="portfolio.html"><span class="icon54-v1-increasing-chart2 mbr-iconfont mbr-iconfont-btn"></span>Portfolio</a><a class="text-black text-primary dropdown-item display-4" href="watchlist.html"><span class="icon54-v1-search-money mbr-iconfont mbr-iconfont-btn"></span>Watchlist</a></div></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="notifications.html"><span class="mdi-social-notifications-on mbr-iconfont mbr-iconfont-btn" style="font-size: 35px;"></span></a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="account.html"><span class="mdi-action-account-circle mbr-iconfont mbr-iconfont-btn" style="font-size: 35px;"></span></a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="settings.html"><span class="mdi-action-settings mbr-iconfont mbr-iconfont-btn" style="font-size: 35px;"></span></a></li></ul>
+                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item dropdown"><a class="nav-link link text-black text-primary dropdown-toggle display-4" href="index.html#testimonials3-1u" data-bs-auto-close="outside" aria-expanded="false" data-toggle="dropdown-submenu" data-bs-toggle="dropdown">Dashboard</a><div class="dropdown-menu" aria-labelledby="dropdown-undefined"><a class="text-black text-primary dropdown-item display-4" href="dashboardindex.html"><span class="icon54-v4-line-chart mbr-iconfont mbr-iconfont-btn"></span>Index</a><a class="text-black text-primary dropdown-item display-4" href="portfolio.html"><span class="icon54-v1-increasing-chart2 mbr-iconfont mbr-iconfont-btn"></span>Portfolio</a><a class="text-black text-primary dropdown-item display-4" href="watchlist.html"><span class="icon54-v1-search-money mbr-iconfont mbr-iconfont-btn"></span>Watchlist</a></div></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="notifications.html"><span class="mdi-social-notifications-on mbr-iconfont mbr-iconfont-btn" style="font-size: 35px;"></span></a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="account.html"><span class="mdi-action-account-circle mbr-iconfont mbr-iconfont-btn" style="font-size: 35px;"></span></a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="settings.html"><span class="mdi-action-settings mbr-iconfont mbr-iconfont-btn" style="font-size: 35px;"></span></a></li></ul>
                 
                 
             </div>
@@ -63,103 +64,118 @@
     </nav>
 </section>
 
-<section data-bs-version="5.1" class="gallery3 cid-sMjnwssV3j" id="gallery3-3l">
-    
-    
-    <div class="container">
-        <div class="mbr-section-head">
-            <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Watch-list</strong></h4>
-            <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-4">Watched Stocks</h5>
-        </div>
-        <div class="row mt-4">
-            <div class="item features-image сol-12 col-md-6 col-lg-6">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="{% static 'assets/images/fb-yahoofinancechart-1256x1256.png' %}" alt="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-7">
-                            <strong>Facebook Inc (FB)</strong></h5>
-                        
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="item features-image сol-12 col-md-6 col-lg-6">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="{% static 'assets/images/abnb-yahoofinancechart-1256x1256.png' %}" alt="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-7">
-                            <strong>Airbnb Inc (ABNB)</strong></h5>
-                        
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            
-        </div>
-    </div>
-</section>
+<div id="custom-html-4v"><!-- Type valid HTML here -->
 
-<div id="custom-html-4q"><!-- Type valid HTML here -->
-<div>
-
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Stocks..">
-
-    
-<table id="myTable">
-  <tbody><tr class="header">
-      <th>Stock</th>
-      <th>Current Value</th>
-      <th>Gain/Loss</th>
-      <th>Signal</th>
-    </tr>
-  </tbody><tbody>
-    <tr>
-      
-      <td>Facebook Inc. Common Stock</td>
-      <td>$335.34 (+$4.66)</td>
-      <td>$340.00 (+1.38%)</td>
-      <td>Hold</td>
-    </tr>
-    <tr>
-      
-      <td>Airbnb Inc.</td>
-      <td>$172.32 (-$1.12)</td>
-      <td>$171.21 (-0.65%)</td>
-      <td>Hold</td>
-    </tr>
-
-  </tbody>
-</table>
-    
-</div>
-
-</div>
-
-<section data-bs-version="5.1" class="header9 cid-sMjBDl9x0w" id="header9-3s">
-
-    
-
-    
-
-    <div class="text-center container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-9">
+    <section>
+    <div class="container-fluid">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Watch-list</li>
+                    </ol>
+                  </nav>
                 
+                  <h1>Watch-list</h1>
+                  <div class="row">
+                    <div class="col-12 col-md-6 col-xg-3 mb-4 mb-lg-0">
+                        <div class="card">
+                            <h5 class="card-header text-center">"Stock 1 Name"</h5>
+                            <div class="card-body">
+                              <h5 class="card-title">S345k</h5>
+                              <p class="card-text">Feb 1 - Apr 1</p>
+                              <p class="card-text text-success">18.2% increase since last month</p>
+                            </div>
+                            <canvas id="chart3"></canvas>
+                          </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-xg-3">
+                        <div class="card">
+                            <h5 class="card-header text-center"> "Stock 2 Name"</h5>
+                            <div class="card-body">
+                              <h5 class="card-title">$2.4k</h5>
+                              <p class="card-text">Feb 1 - Apr 1</p>
+                              <p class="card-text text-danger">5.6% decrease since last month</p>
+                            </div>
+                            <canvas id="chart4"></canvas>
+                          </div>
+                    </div>
+                  </div>
                 
+                  </div>
                 
-                <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" href="#">Add Stock</a>
-                    <a class="btn btn-primary-outline display-4" href="#">Delete Stock</a></div>
-            </div>
+                  <div class="row">
+                        <div class="card">
+                            <h5 class="card-header">Watched Stocks</h5>
+                            <div class="card-body">
+                                <div>
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Stocks..">
+                                <button class="btn btn-info">
+    Add
+  </button>
+  </div>
+                                <div class="table-responsive-xl">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Select</th>
+                                            <th scope="col">Stock</th>
+                                            <th scope="col">Current Price</th>
+                                            <th scope="col">Percent Change</th>
+                                            <th scope="col">Suggestion</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td scope="row" class="align-middle ">
+                                                <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                </div></td>
+                                            <th scope="row" class="align-middle">Stock 1(STK1))</th>
+                                            <td class="align-middle">$34.09</td>
+                                            <td class="align-middle">+0.5%</td>
+                                            <td class="align-middle">Wait</td>
+                                         </tr>
+                                            
+                                            <tr>
+                                            <td scope="row" class="align-middle ">
+                                                <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                </div></td>
+                                            <th scope="row" class="align-middle">Stock 2(STK2)</th>
+                                            <td class="align-middle">$59.95</td>
+                                            <td class="align-middle">-0.15%</td>
+                                            <td class="align-middle">Buy</td>
+                                         </tr>
+                                        
+                                            <tr>
+                                            <td scope="row" class="align-middle ">
+                                                <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                </div></td>
+                                            <th scope="row" class="align-middle">Stock 3(STK3)</th>
+                                            <td class="align-middle">$20.30</td>
+                                            <td class="align-middle">+0.4%</td>
+                                            <td class="align-middle">Buy</td>
+                                         </tr>
+                                            
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
+                        </div>
         </div>
-    </div>
-</section>
+                <div class="row">
+  <div class="col-auto">
+    <select class="form-select" aria-label="Select Chart">
+  <option class="align-middle" selected="">Load Stock to Chart</option>
+  <option value="1">Left Chart</option>
+  <option value="2">Right Chart</option>
+      </select></div>
+  </div>
+      <button class="btn btn-danger">
+    Delete Stock
+          </button>
+    </section></div>
 
 <section data-bs-version="5.1" class="footer3 cid-sMjnwtrZzX mbr-reveal" once="footers" id="footer3-3n">
 
@@ -212,13 +228,14 @@
 </section>
 
 
-<script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/smoothscroll/smooth-scroll.js' %}"></script>
-  <script src="{% static 'assets/ytplayer/index.js' %}"></script>
-  <script src="{% static 'assets/dropdown/js/navbar-dropdown.js' %}"></script>
-  <script src="{% static 'assets/theme/js/script.js' %}"></script>
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/ytplayer/index.js"></script>
+  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="assets/theme/js/script.js"></script>
   
-  
+  <script src="assets/chart3.js"></script>
+  <script src="assets/chart4.js"></script>
   
   <input name="animation" type="hidden">
   
