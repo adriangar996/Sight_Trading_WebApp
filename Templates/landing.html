@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html  >
 <head>
@@ -6,25 +7,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/sight-logo-oficial-263x281.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'assets/images/sight-logo-oficial-263x281.png' %}" type="image/x-icon">
   <meta name="description" content="Sight: AI Stock Market Analysis and Prediction Web Application.">
   
   
   <title>Home</title>
-  <link rel="stylesheet" href="assets/Material-Design-Icons/css/material.css">
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/parallax/jarallax.css">
-  <link rel="stylesheet" href="assets/web/assets/gdpr-plugin/gdpr-styles.css">
-  <link rel="stylesheet" href="assets/animatecss/animate.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
-  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="{% static 'assets/Material-Design-Icons/css/material.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/web/assets/mobirise-icons2/mobirise2.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-grid.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-reboot.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/parallax/jarallax.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/web/assets/gdpr-plugin/gdpr-styles.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/animatecss/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/dropdown/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/socicon/css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/theme/css/style.css' %}">
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="preload" as="style" href="{% static 'assets/mobirise/css/mbr-additional.css' %}"><link rel="stylesheet" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" type="text/css">
   
   
   
@@ -40,7 +41,7 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="landing.html">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="height: 4.7rem;" loading="lazy" class="lazyload" data-src="assets/images/sight-logo-oficial-263x281.png">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="height: 4.7rem;" loading="lazy" class="lazyload" data-src="{% static 'assets/images/sight-logo-oficial-263x281.png' %}">
                     </a>
                 </span>
                 
@@ -99,7 +100,7 @@
             <div class="carousel-item">
                     <div class="user col-md-8">
                         <div class="user_image">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" loading="lazy" class="lazyload" data-src="assets/images/118571132-artificial-intelligence-ai-technology-stock-market-ticker-3d-illustration-400x232.jpeg">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" loading="lazy" class="lazyload" data-src="{% static 'assets/images/118571132-artificial-intelligence-ai-technology-stock-market-ticker-3d-illustration-400x232.jpeg' %}">
                         </div>
                         <div class="user_text mb-4">
                             <p class="mbr-fonts-style display-7">SIGHT is a web app for stock market analysis and prediction using machine learning. The product allows a user to follow stock prices of his choosing to obtain a forecast of the stock prices. It will also monitor the stock they own and calculate projected profits or losses based on the amount of stock the user possesses. The product will not trade stock. Stock data will be presented in a time series chart. The goal of this product is to assist users in making decisions. The analysis and predictions are made by machine learning algorithms that processes the information retrieved from a database. This database is fed by a data mining algorithm. The factors taken into consideration for this algorithm will be historical stock value data and market closing time stock values.<br></p>
@@ -111,7 +112,7 @@
                 </div><div class="carousel-item">
                     <div class="user col-md-8">
                         <div class="user_image">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" loading="lazy" class="lazyload" data-src="assets/images/mbr-400x225.jpg">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" loading="lazy" class="lazyload" data-src="{% static 'assets/images/mbr-400x225.jpg' %}">
                         </div>
                         <div class="user_text mb-4">
                             <p class="mbr-fonts-style display-7">Cesar Borris, Computer Engineering Student<br>Jaime Santana, Computer Engineering Student<br>Jared Villanueva Valentín, Computer Engineering Student<br>Adrian García, Computer Science Student<br>Wilberto,&nbsp;Computer Engineering Student</p>
@@ -123,7 +124,7 @@
                 </div><div class="carousel-item">
                     <div class="user col-md-8">
                         <div class="user_image">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" loading="lazy" class="lazyload" data-src="assets/images/sight-logo-oficial-w-back-400x310.jpeg">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" loading="lazy" class="lazyload" data-src="{% static 'assets/images/sight-logo-oficial-w-back-400x310.jpeg' %}">
                         </div>
                         <div class="user_text mb-4">
                             <p class="mbr-fonts-style display-7">
@@ -247,14 +248,14 @@
 </section>
 
 
-<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/parallax/jarallax.js"></script>
-  <script src="assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="assets/ytplayer/index.js"></script>
-  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-  <script src="assets/mbr-testimonials-slider/mbr-testimonials-slider.js"></script>
-  <script src="assets/vimeoplayer/player.js"></script>
-  <script src="assets/theme/js/script.js"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/parallax/jarallax.js' %}"></script>
+  <script src="{% static 'assets/smoothscroll/smooth-scroll.js' %}"></script>
+  <script src="{% static 'assets/ytplayer/index.js' %}"></script>
+  <script src="{% static 'assets/dropdown/js/navbar-dropdown.js' %}"></script>
+  <script src="{% static 'assets/mbr-testimonials-slider/mbr-testimonials-slider.js' %}"></script>
+  <script src="{% static 'assets/vimeoplayer/player.js' %}"></script>
+  <script src="{% static 'assets/theme/js/script.js' %}"></script>
   
   
   
