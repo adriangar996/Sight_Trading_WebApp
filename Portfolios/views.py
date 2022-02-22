@@ -8,7 +8,27 @@ from Portfolios.models import PortfolioUser
 
 def portfolioView(request):
 
-    return render(request, 'portfolio.html')  
+    return render(request, 'portfolio.html')
+
+def watchlistView(request):
+
+    return render(request, 'watchlist.html')
+
+def notificationsView(request):
+
+    return render(request, 'notifications.html')
+
+def accountView(request):
+
+    return render(request, 'account.html')
+
+def settingsView(request):
+
+    return render(request, 'settings.html')
+
+def helpView(request):
+
+    return render(request, 'help.html')       
 
 # from django.shortcuts import render
 # from yahoo_finance import Share
