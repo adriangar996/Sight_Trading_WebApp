@@ -7,7 +7,7 @@ from Portfolios.models import PortfolioUser
 
 
 def homeView(request):
-   
+
     return render(request, 'landing.html')   
 
 
