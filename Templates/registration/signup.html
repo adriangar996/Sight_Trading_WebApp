@@ -76,11 +76,16 @@
                 </div>
             </div>
             <div class="col-lg-3 offset-lg-1 mbr-form" data-form-type="formoid">
-                <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="ApRNQmm40RpHDuuQgjDJ5VEytvRLGi7lPG0L/TVp/+QwGlNP9oGwD5iwzdB5uS3wJNQuwQOISyrC8Gz7kjfxrGYAb8DSYOE00i5bENDEDY0i8AQ+cLKObEnVZl56NhR/.JEgzv+uP8FaiUS5W1z+uIMcPEoHtxDBJzrAgzlmraO17ePy9Hz3OKl+9DAdrsa3WB0DM/XN/xSTtosFBKOpUxXNHDIbKOTyTYLj+u+JYUVkL8lDD7He0Wtdm9s7ZEi8D">
+                <!--<form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="ApRNQmm40RpHDuuQgjDJ5VEytvRLGi7lPG0L/TVp/+QwGlNP9oGwD5iwzdB5uS3wJNQuwQOISyrC8Gz7kjfxrGYAb8DSYOE00i5bENDEDY0i8AQ+cLKObEnVZl56NhR/.JEgzv+uP8FaiUS5W1z+uIMcPEoHtxDBJzrAgzlmraO17ePy9Hz3OKl+9DAdrsa3WB0DM/XN/xSTtosFBKOpUxXNHDIbKOTyTYLj+u+JYUVkL8lDD7He0Wtdm9s7ZEi8D">-->
+                <form role="form" method="POST" action="../signup/">
+                    {% csrf_token %}
+                    {% for error in errors %}
+                      {{ error }}<br>
+                    {% endfor %}
                     <div class="row">
-                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for joining Sight, a customer representative will contact you via email to grant access credentials for the app!</div>
+                        <!--<div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for joining Sight, a customer representative will contact you via email to grant access credentials for the app!</div>
                         <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">Oops...! some
-                            problem!</div>
+                            problem!</div>-->
                     </div>
                     <div class="dragArea row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -91,19 +96,19 @@
                             <p class="mbr-text mbr-fonts-style mb-4 display-7"><a href="../login" class="text-primary">Already a member? Log-in</a></p>
                         </div>
                         <div data-for="name" class="col-lg-12 col-md col-sm-12 form-group mb-3">
-                            <input type="text" name="first_name" placeholder="First Name" data-form-field="firstname" class="form-control" value="" id="first_name" required/>
+                            <input type="text" name="first_name" placeholder="First Name" class="form-control" value="" id="first_name" required/>
                         </div>
                         <div class="col-lg-12 col-md col-sm-12 form-group mb-3" data-for="lastname">
-                            <input type="lastname" name="last_name" placeholder="Last Name" data-form-field="Last Name" class="form-control" value="" id="last_name" required/>
+                            <input type="text" name="last_name" placeholder="Last Name" class="form-control" value="" id="last_name" required/>
                         </div>
                         <div class="col-lg-12 col-md col-sm-12 form-group mb-3" data-for="email">
-                            <input type="email" name="email" placeholder="Email" data-form-field="email" class="form-control" value="" id="email" required/>
+                            <input type="email" name="email" placeholder="Email" class="form-control" value="" id="email" required/>
                         </div>
                         <div class="col-lg-12 col-md col-sm-12 form-group mb-3" data-for="password">
-                            <input type="password" name="password" placeholder="Password" data-form-field="password" class="form-control" value="" id="password" required/>
+                            <input type="password" name="password" placeholder="Password" class="form-control" value="" id="password" required/>
                         </div>
                         <div class="col-lg-12 col-md col-sm-12 form-group mb-3" data-for="password">
-                            <input type="Confirmpass" name="password_confirmation" placeholder="Confirm Password" data-form-field="Confirmpass" class="form-control" value="" id="password_confirmation" required/>
+                            <input type="password" name="password_confirmation" placeholder="Confirm Password" class="form-control" value="" id="password_confirmation" required/>
                         </div>
                         <div class="col-md-auto col-12 mbr-section-btn"><button type="submit" class="btn btn-primary display-4">Submit</button></div>
                     </div>

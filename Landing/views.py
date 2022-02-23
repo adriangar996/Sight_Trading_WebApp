@@ -25,11 +25,11 @@ def loginView(request):
       return render(request, 'dashboardindex.html')
     # Incorrect username or password
     else:
-      return render(request, 'login.html', {'errors': ['Invalid Username and/or Password']})
+      return render(request, 'registration/login.html', {'errors': ['Invalid Username and/or Password']})
 
   else:
     # Displacy Login Form
-    return render(request, 'login.html')
+    return render(request, 'registration/login.html')
 
 def logout_user(request):
   '''Logouts the currently signed in user and redirects to login'''
@@ -60,14 +60,14 @@ def signupView(request):
     if password != confirm_password:
       errors.append('Password and Confirm Password don\'t match')
     if len(errors) > 0:
-      return render(request, 'signup.html', {'errors' : errors})
+      return render(request, 'registration/signup.html', {'errors' : errors})
 
     # Create a User and redirect to login
     user = User.objects.create_user(email, password=password)
     PortfolioUser.objects.create(user=user, first_name=f_name, last_name=l_name)
-    return render(request, 'login.html')
+    return render(request, 'registration/login.html')
   else:
     # Display registration form
-    return render(request, 'signup.html')
+    return render(request, 'registration/signup.html')
 
 
