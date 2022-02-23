@@ -36,7 +36,7 @@
   <section data-bs-version="5.1" class="menu menu2 cid-sXroWQNVO7" once="menu" id="menu2-4j">
     
     <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="../landing">
@@ -73,16 +73,13 @@
         </div>
         <div class="row justify-content-center mt-4">
             <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
-                <!--<form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler mx-auto" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="wN5cJz1dB8dWS8dvRw3/0s+amL6kVTyGlaTf/Ly7T11GTYyhN6nNMNMzafhAXyH2+hah+AaEecBD2Z/GnxZr6pRa38E5w/QtvzFfLVWbTua9/mi8evGCIZSgnfMNktUu.yAHWjKFC1cX8/hvdLZtpHPGcRR1NI8ScRBdYGwYpToHsHVOUIfrwX9xOhrlHaja/YuazOmdlkwh6GhfCGqCnnsZDfT5OtmFs0m0VT4h4iL2B6C1GER1umWhL4fb2gkic">-->
+                
                 <form role="form" method="POST" action="../login/">
                   {% csrf_token %}
                   {% for error in errors %}
                     {{ error }}<br>
                   {% endfor %}
-                    <div class="row">
-                        <!--<div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Launching SIGHT App...</div>
-                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">Oops...! some problem!</div>-->
-                    </div>
+                    
                     <div class="dragArea row">
                         <div class="col-lg-12">
                             <p class="mbr-text mbr-fonts-style align-center mb-4 display-7"> <a href="../login" class="text-primary">Forgot Password?</a></p>
