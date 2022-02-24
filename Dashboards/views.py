@@ -9,6 +9,8 @@ import json
 
 
 
+
+
 @login_required
 def indexView(request):
 
@@ -21,16 +23,21 @@ def indexView(request):
     }
 
     r = requests.request("GET", url, headers=headers, params=querystring)
-    response = r.json()
-    
-    prev_close = response['regularMarketPreviousClose']
-    day_range = response['regularMarketDayRange']
-    year_range = response['fiftyTwoWeekRange']
+    data = r.json()
+
+    response = data['quoteResponse']
+    result = response['result']
+
+    for i in result:
+
+        prev_close = i['regularMarketPreviousClose']
+        day_range = i['regularMarketDayRange']
+        year_range = i['fiftyTwoWeekRange']
 
     context={
-      'prev_close' : prev_close,  
+      'prev_close' : prev_close,
       'day_range' : day_range,
-      'year_range' : year_range,
+      'year_range' : year_range
     }
 
     return render(request, 'dashboardindex.html', context)  
@@ -38,7 +45,20 @@ def indexView(request):
 
 
 
+#  url = "https://yfapi.net/v6/finance/quote"
 
+#     querystring = {"symbols":"NDAQ"}
+
+#     headers = {
+#     'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"
+#     }
+
+#     r = requests.request("GET", url, headers=headers, params=querystring)
+#     data = r.json()
+
+#     context={
+#       'data' : data,
+#     }
 
 
 
