@@ -44,36 +44,3 @@ def indexView(request):
 
 
 
-
-#  url = "https://yfapi.net/v6/finance/quote"
-
-#     querystring = {"symbols":"NDAQ"}
-
-#     headers = {
-#     'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"
-#     }
-
-#     r = requests.request("GET", url, headers=headers, params=querystring)
-#     data = r.json()
-
-#     context={
-#       'data' : data,
-#     }
-
-
-
-#   index = Share('NDAQ')
-
-#     prev_close = index.get_prev_close()
-#     day_high = index.get_days_high()
-#     day_low = index.get_days_low()
-#     year_high = index.get_year_high()
-#     year_low = index.get_year_low()
-
-#     context={
-#         'prev_close' : prev_close,
-#         'day_high' : day_high,
-#         'day_low' : day_low,
-#         'year_high' : year_high,
-#         'year_low' : year_low,
-#     }
