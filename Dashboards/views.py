@@ -10,13 +10,13 @@ import json
 
 
 
-
+#Extracting NASDAQ data for Dashboard Index (NDAQ Prev.close, Day Range, Year Range)
 @login_required
 def indexView(request):
 
     url = "https://yfapi.net/v6/finance/quote"
 
-    querystring = {"symbols":"NDAQ"}
+    querystring = {"symbols":"^IXIC"}
 
     headers = {
     'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"
