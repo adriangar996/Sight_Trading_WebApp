@@ -11,11 +11,8 @@ Set up Project:
 10.Run Development Server: python3 manage.py runserver
 
 
-
 Front-end ToDo:
--Fix footer in signup
 -Fix full vertical page fill
--Forgot_Password popup
 -add password container in account
 -Fix Breadcrumb linking
 -Fix Notifications.html
