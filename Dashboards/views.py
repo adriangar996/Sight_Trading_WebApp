@@ -10,7 +10,7 @@ import json
 
 
 
-#Extracting NASDAQ data for Dashboard Index (NDAQ Prev.close, Day Range, Year Range)
+#Extracting NASDAQ data for Dashboard Index (NASDAQ(^IXIC) Prev.close, Day Range, Year Range)
 @login_required
 def indexView(request):
 

@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from Portfolios.models import PortfolioUser
+from Portfolios.models import StockPortfolio, PortfolioUser
+from .functions import *
+
 
 
 
@@ -20,6 +22,20 @@ def notificationsView(request):
     return render(request, 'notifications.html')
 
 def accountView(request):
+
+    # user_id = request.user.id
+    # account_info = user_info(user_id)
+
+    # first_name = account_info['f_name']
+    # last_name = account_info['l_name']
+    # email = account_info['email']
+
+    # context={
+
+    #     'first_name' : first_name,
+    #     'last_name' : last_name,
+    #     'email' : email
+    # }
 
     return render(request, 'account.html')
 

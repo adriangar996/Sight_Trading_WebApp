@@ -63,7 +63,7 @@ def signupView(request):
       return render(request, 'registration/signup.html', {'errors' : errors})
 
     # Create a User and redirect to login
-    user = User.objects.create_user(email, password=password)
+    user = User.objects.create_user(first_name=f_name, last_name=l_name, username=email, password=password)
     PortfolioUser.objects.create(user=user, first_name=f_name, last_name=l_name)
     return render(request, 'registration/login.html')
   else:
