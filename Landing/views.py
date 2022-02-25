@@ -22,7 +22,7 @@ def loginView(request):
     # Valid username and password
     if authenticated is not None and authenticated.is_active:
       login(request, authenticated)
-      return render(request, 'dashboardindex.html')
+      return render(request, 'landing.html')
     # Incorrect username or password
     else:
       return render(request, 'registration/login.html', {'errors': ['Invalid Username and/or Password']})
