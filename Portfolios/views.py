@@ -3,10 +3,11 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Portfolios.models import StockPortfolio, PortfolioUser
+from Portfolios.models import Watchlist
 from yahoo_finance import Share
 import time
 import decimal
-from .forms import AddStockForm
+from .forms import AddStockForm, AddWatchlistForm
 from .functions import *
 import logging
 import requests
@@ -146,7 +147,7 @@ def portfolioView(request):
             logger.info('Removing ' + symbol + ' from stock portfolio')
 
             StockPortfolio.objects.filter( user=user, symbol=symbol).delete()
-            stock_list = StockPortfolio.objects.order_by('price')[:10]
+            stock_list = StockPortfolio.objects.all()
 
             delete_success_message = "Stock successfully removed from portfolio!"
 
@@ -162,10 +163,6 @@ def portfolioView(request):
         stocks = StockPortfolio.objects.all()  # This returns queryset
 
         for stock in stocks:
-            #stock_object = Share(stock.symbol)
-
-            #stock.price = decimal.Decimal(stock_object.get_price())
-            #stock.change = stock_object.get_percent_change()
 
             url = "https://yfapi.net/v6/finance/quote"
 
@@ -211,7 +208,153 @@ def portfolioView(request):
 
 def watchlistView(request):
 
-    return render(request, 'watchlist.html')
+    user_id = request.user.id
+
+    user = PortfolioUser.objects.filter(user=user_id)[0]
+    watch_list = Watchlist.objects.all()
+
+    today_date = time.strftime("%d.%m.%Y %H:%M")
+
+    
+    if 'add_stock' in request.POST:
+
+            form = AddWatchlistForm(request.POST)
+
+            if form.is_valid():  # form validation
+                new_stock = request.POST.get("add_stock", "")
+
+                if not Watchlist.objects.filter(user=user, symbol=new_stock.upper()):  # stock not already in watchlist
+
+                    logger.info('Adding ' + new_stock.upper() + ' to watchlist')
+
+                    try:  # try to add stock to watchlist
+                        url = "https://yfapi.net/v6/finance/quote"
+
+                        querystring = {"symbols":new_stock.upper()}
+
+                        headers = {
+                        'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"  
+                        }
+
+                        r = requests.request("GET", url, headers=headers, params=querystring)
+                        data = r.json()
+
+                        response = data['quoteResponse']
+                        result = response['result']
+
+                        for i in result:
+
+                            new_stock_price = i['regularMarketPrice']
+                            new_stock_name = i['shortName']
+                            new_stock_change = i['regularMarketChangePercent']
+
+
+                            stock_to_db = Watchlist(
+                                            user=user,
+                                            symbol=new_stock.upper(),
+                                            name=new_stock_name,
+                                            price=new_stock_price,
+                                            change=new_stock_change,
+                                            )
+                            stock_to_db.save()
+
+                            add_success_message = "Stock successfully added to watchlist!"
+
+                            context = {
+                                'watch_list': watch_list,
+                                'today_date': today_date,
+                                'add_success_message': add_success_message,
+                            }
+                            return render(request, 'watchlist.html', context)
+
+                    except Exception:  # if symbol is not correct
+                        pass
+                        error_message = "Insert correct symbol!"
+
+                        context = {
+                            'watch_list': watch_list,
+                            'today_date': today_date,
+                            'error_message': error_message,
+                        }
+                        return render(request, 'watchlist.html', context)
+
+                else:  # if symbol is already in your watchlist
+                    stock_exists_message = "Stock is already in watchlist!"
+
+                    context = {
+                        'watch_list': watch_list,
+                        'today_date': today_date,
+                        'stock_exists_message': stock_exists_message,
+                    }
+                    return render(request, 'watchlist.html', context)
+
+            else:  # if form was incorrectly filled in
+                error_message = "Invalid form!"
+
+                context = {
+                    'watch_list': watch_list,
+                    'today_date': today_date,
+                    'error_message': error_message,
+                }
+                return render(request, 'watchlist.html', context)
+
+    elif 'remove_stock' in request.POST:  # if user was trying to remove stock from watchlist
+
+        symbol = str(request.POST.get('stock_symbol'))
+
+        if Watchlist.objects.filter(user=user,  symbol=symbol).count() > 0:  # if inserted stock is in watchlist
+
+            logger.info('Removing ' + symbol + ' from watchlist')
+
+            Watchlist.objects.filter( user=user, symbol=symbol).delete()
+            watch_list = Watchlist.objects.all()
+
+            delete_success_message = "Stock successfully removed from watchlist!"
+
+            context = {
+                'watch_list': watch_list,
+                'today_date': today_date,
+                'delete_success_message': delete_success_message,
+            }
+            return render(request, 'watchlist.html', context)
+
+    else:  # if there was no POST request - the whole watchlist should be updated
+
+        stocks = Watchlist.objects.all()  # This returns queryset
+
+        for stock in stocks:
+
+            url = "https://yfapi.net/v6/finance/quote"
+
+            querystring = {"symbols":stock.symbol}
+
+            headers = {
+                'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"  
+            }
+
+            r = requests.request("GET", url, headers=headers, params=querystring)
+            data = r.json()
+
+            response = data['quoteResponse']
+            result = response['result']
+
+            for i in result:
+
+                stock.price = decimal.Decimal(i['regularMarketPrice'])
+                stock.change = i['regularMarketChangePercent']
+
+
+                stock.save(update_fields=['price', 'change'])  # do not create new object in db,
+                # update current lines
+
+        context = {
+            'watch_list': watch_list,
+            'today_date': today_date
+        }
+
+        logger.info('Refreshing watchlist')
+
+        return render(request, 'watchlist.html', context)
 
 def notificationsView(request):
 
@@ -233,4 +376,4 @@ def helpView(request):
 
 
 
-   
+    
