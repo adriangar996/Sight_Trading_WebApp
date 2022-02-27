@@ -30,7 +30,7 @@ class StockPortfolio(models.Model):
     stock_user = PortfolioUser.objects.get(user=user_id)
     stock_user.buying_price += float(cost_per_share) * int(num_shares)
     stock_user.save()
-    result = StockPortfolio.objects.get_or_create(stock=stock_symbol, user=stock_user)[0]
+    result = StockPortfolio.objects.get_or_create(symbol=stock_symbol, user=stock_user)[0]
     result.shares_owned += int(num_shares)
     result.save()
 

@@ -148,20 +148,22 @@
                                           </tr>
                                         </thead>
                                         <tbody>
+                                          {% for stock in stock_list %}
                                           <tr>
                                             <td scope="row" class="align-middle ">
                                                 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                                 </div></td>
-                                            <th scope="row" class="align-middle">Stock 1(STK1))</th>
-                                            <td class="align-middle">.093</td>
-                                            <td class="align-middle">$32.00</td>  
-                                            <td class="align-middle">$34.09</td>
-                                            <td class="align-middle">+0.5%</td>
+                                            <th scope="row" class="align-middle">{{stock.symbol}}</th>
+                                            <td class="align-middle">{{stock.shares_owned}}</td>
+                                            <td class="align-middle">{{stock.buying_price}}</td>  
+                                            <td class="align-middle">{{stock_price}}</td>
+                                            <td class="align-middle">{{stock.gain_loss}}</td>
                                             <td class="align-middle text-info">Hold</td>
-                                         </tr>
+                                          </tr>
+                                          {% endfor %}
                                             
-                                            <tr>
+                                            <!--<tr>
                                             <td scope="row" class="align-middle ">
                                                 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -185,7 +187,7 @@
                                             <td class="align-middle">$20.30</td>
                                             <td class="align-middle">-0.5%</td>
                                             <td class="align-middle text-info">Hold</td>
-                                         </tr>
+                                         </tr>-->
                                             
                                         </tbody>
                                       </table>
@@ -222,27 +224,30 @@
 
                             <div class="form-wrapper" data-form-type="formoid">
 <!--Formbuilder Form-->
-<form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Add_Stock_Form"><input type="hidden" name="email" data-form-email="true" value="X6mEH2nTQtS6u6JWEROSAem/O+jgVkXIFqYpBoUhYJCT5+gY3lUjWrhcjRa2d/D9jR09r40RAJhftohderfNgAqSnqFKilSAng2puEle35l1A671y4lan8D2HQUt5rWx.GA9GcKW6zE2uSuzMLq+lPmfAPBG+R2K5KWxrAxltc6bStT2lD/Xl2pXxBouQeM2HkoeGjmOMZars0/6Opgd2V9k1g4hef+B8jevFB4FvOgWmIFpmJbiBKOLgXs9hLkZ+">
-<div class="">
-<div hidden="hidden" data-form-alert="" class="alert alert-success col-12">The Stock: } has been added to your portfolio!</div>
-<div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12"> </div>
-</div>
+<form role="form" method="POST" action="../portfolio/">
+{% csrf_token %}
 <div class="dragArea row">
-<div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="Ticker">
+<div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="add_stock">
 <label for="Ticker-mbr-popup-59" class="form-control-label mbr-fonts-style display-7">Ticker</label>
-<input type="text" name="Ticker" placeholder="Enter the stock's ticker symbol" data-form-field="Ticker" required="required" class="form-control display-7" value="" id="Ticker-mbr-popup-59">
+<input type="text" name="add_stock" placeholder="Enter the stock's ticker symbol" required="required" class="form-control display-7" value="{{add_stock}}" id="add_stock">
 </div>
-<div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="Buying_Price">
+<div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="buying_price">
 <label for="Buying_Price-mbr-popup-59" class="form-control-label mbr-fonts-style display-7">Buying Price</label>
-<input type="text" name="Buying_Price" placeholder="Enter stock's buying price" data-form-field="Buying_Price" required="required" class="form-control display-7" value="" id="Buying_Price-mbr-popup-59">
+<input type="text" name="buying_price" placeholder="Enter stock's buying price" required="required" class="form-control display-7" value="{{ buying_price }}" id="buying_price">
 </div>
-<div data-for="owned" class="col-lg-12 col-md-12 col-sm-12 form-group">
+<div data-for="stocks_bought" class="col-lg-12 col-md-12 col-sm-12 form-group">
 <label for="owned-mbr-popup-59" class="form-control-label mbr-fonts-style display-7">Quantity Owned</label>
-<input type="text" name="owned" placeholder="Enter the quantity of shares owned" data-form-field="owned" class="form-control display-7" required="required" value="" id="owned-mbr-popup-59">
+<input type="text" name="stocks_bought" placeholder="Enter the quantity of shares owned" class="form-control display-7" required="required" value="{{ stocks_bought }}" id="stocks_bought">
 </div>
 <div class="col input-group-btn">
 <button type="submit" class="w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 btn btn-primary display-4">Add Stock to Portfolio</button>
 </div>
+{% if error_message %}
+    <span class="down">{{ error_message }}{{ stock_exists_message }}</span>
+{% endif %}
+{% if add_success_message %}
+    <span class="up">{{ add_success_message }}</span>
+{% endif %}
 </div>
 <span class="gdpr-block">
 
