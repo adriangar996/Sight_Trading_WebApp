@@ -36,7 +36,7 @@ def portfolioView(request):
     user_id = request.user.id
 
     user = PortfolioUser.objects.filter(user=user_id)[0]
-    stock_list = StockPortfolio.objects.filter(user=user_id)
+    stock_list = StockPortfolio.objects.all()
 
     today_date = time.strftime("%d.%m.%Y %H:%M")
 
@@ -52,31 +52,31 @@ def portfolioView(request):
 
                     logger.info('Adding ' + new_stock.upper() + ' to stock portfolio')
 
-                    #try:  # try to add stock to portfolio
-                    url = "https://yfapi.net/v6/finance/quote"
+                    try:  # try to add stock to portfolio
+                        url = "https://yfapi.net/v6/finance/quote"
 
-                    querystring = {"symbols":new_stock.upper()}
+                        querystring = {"symbols":new_stock.upper()}
 
-                    headers = {
+                        headers = {
                         'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"  
-                    }
+                        }
 
-                    r = requests.request("GET", url, headers=headers, params=querystring)
-                    data = r.json()
+                        r = requests.request("GET", url, headers=headers, params=querystring)
+                        data = r.json()
 
-                    response = data['quoteResponse']
-                    result = response['result']
+                        response = data['quoteResponse']
+                        result = response['result']
 
-                    for i in result:
+                        for i in result:
 
-                        new_stock_price = i['regularMarketPrice']
-                        new_stock_name = i['shortName']
-                        new_stock_change = i['regularMarketChangePercent']
-                        shares_owned = form.cleaned_data['stocks_bought']
-                        buying_price = form.cleaned_data['buying_price']
+                            new_stock_price = i['regularMarketPrice']
+                            new_stock_name = i['shortName']
+                            new_stock_change = i['regularMarketChangePercent']
+                            shares_owned = form.cleaned_data['stocks_bought']
+                            buying_price = form.cleaned_data['buying_price']
 
 
-                    stock_to_db = StockPortfolio(
+                            stock_to_db = StockPortfolio(
                                             user=user,
                                             symbol=new_stock.upper(),
                                             name=new_stock_name,
@@ -86,36 +86,36 @@ def portfolioView(request):
                                             buying_price=buying_price,
                                             gain_loss= 0
                                             )
-                    stock_to_db.save()
+                            stock_to_db.save()
 
-                    add_success_message = "Stock successfully added to portfolio!"
+                            add_success_message = "Stock successfully added to portfolio!"
 
-                    stock = StockPortfolio.objects.get( user=user, symbol=new_stock.upper())
-                    stocks = stock.shares_owned
-                    bprice = stock.buying_price
-                    price = stock.price
-                    gain_loss = (stocks * price) - (stocks * bprice)
-                    stock.gain_loss = gain_loss
-                    stock.save()
+                            stock = StockPortfolio.objects.get( user=user, symbol=new_stock.upper())
+                            stocks = stock.shares_owned
+                            bprice = stock.buying_price
+                            price = stock.price
+                            gain_loss = (stocks * price) - (stocks * bprice)
+                            stock.gain_loss = gain_loss
+                            stock.save()
 
-                    context = {
-                        'stock_price' : new_stock_price,
-                        'stock_list': stock_list,
-                        'today_date': today_date,
-                        'add_success_message': add_success_message,
-                    }
-                    return render(request, 'portfolio.html', context)
 
-                    # except Exception:  # if symbol is not correct
-                    #     pass
-                    #     error_message = "Insert correct symbol!"
+                            context = {
+                                'stock_list': stock_list,
+                                'today_date': today_date,
+                                'add_success_message': add_success_message,
+                            }
+                            return render(request, 'portfolio.html', context)
 
-                    # context = {
-                    #         'stock_list': stock_list,
-                    #         'today_date': today_date,
-                    #         'error_message': error_message,
-                    #     }
-                    #     return render(request, 'portfolio.html', context)
+                    except Exception:  # if symbol is not correct
+                        pass
+                        error_message = "Insert correct symbol!"
+
+                        context = {
+                            'stock_list': stock_list,
+                            'today_date': today_date,
+                            'error_message': error_message,
+                        }
+                        return render(request, 'portfolio.html', context)
 
                 else:  # if symbol is already in your portfolio
                     stock_exists_message = "Stock is already in your portfolio!"
@@ -157,37 +157,57 @@ def portfolioView(request):
             }
             return render(request, 'portfolio.html', context)
 
-    # else:  # if there was no POST request - the whole portfolio should be updated
+    else:  # if there was no POST request - the whole portfolio should be updated
 
-    #     stocks = StockPortfolio.objects.all()  # This returns queryset
+        stocks = StockPortfolio.objects.all()  # This returns queryset
 
-    #     for stock in stocks:
-    #         stock_object = Share(stock.symbol)
+        for stock in stocks:
+            #stock_object = Share(stock.symbol)
 
-    #         stock.price = decimal.Decimal(stock_object.get_price())
-    #         stock.change = stock_object.get_percent_change()
+            #stock.price = decimal.Decimal(stock_object.get_price())
+            #stock.change = stock_object.get_percent_change()
 
-    #         gain_loss = (stock.stocks_owned * stock.price) - (stock.stocks_owned * stock.buying_price)
-    #         stock.gain_loss = gain_loss
+            url = "https://yfapi.net/v6/finance/quote"
 
-    #         stock.save(update_fields=['price', 'change', 'gain_loss'])  # do not create new object in db,
-    #         # update current lines
+            querystring = {"symbols":stock.symbol}
 
-    #     context = {
-    #         'stock_list': stock_list,
-    #         'today_date': today_date
-    #     }
+            headers = {
+                'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"  
+            }
 
-    #     logger.info('Refreshing stock list')
+            r = requests.request("GET", url, headers=headers, params=querystring)
+            data = r.json()
 
-    #     return render(request, 'portfolio.html', context)
+            response = data['quoteResponse']
+            result = response['result']
+
+            for i in result:
+
+                stock.price = decimal.Decimal(i['regularMarketPrice'])
+                stock.change = i['regularMarketChangePercent']
+
+
+            gain_loss = (stock.shares_owned * stock.price) - (stock.shares_owned * stock.buying_price)
+            stock.gain_loss = gain_loss
+
+            stock.save(update_fields=['price', 'change', 'gain_loss'])  # do not create new object in db,
+            # update current lines
+
+        context = {
+            'stock_list': stock_list,
+            'today_date': today_date
+        }
+
+        logger.info('Refreshing stock list')
+
+        return render(request, 'portfolio.html', context)
 
 
 
 
 
 
-    return render(request, 'portfolio.html')
+    #return render(request, 'portfolio.html')
 
 def watchlistView(request):
 
