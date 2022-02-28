@@ -91,10 +91,9 @@
                             <div class="col-auto">
                               <select class="form-select" aria-label="Select Chart">
                             <option class="align-middle" selected="">Load Stock to Chart</option>
-                            <option value="1">stock1</option>
-                            <option value="2">stock2</option>
-                                  <option value="3">stock3</option>
-                                  <option value="n">stockn</option>
+                            {% for stock in watch_list %}
+                            <option value="1">{{stock.symbol}}</option>
+                            {% endfor %}
                                 </select></div>
                             </div>
                     </div>
@@ -112,10 +111,9 @@
                             <div class="col-auto">
                               <select class="form-select" aria-label="Select Chart">
                             <option class="align-middle" selected="">Load Stock to Chart</option>
-                            <option value="1">stock1</option>
-                            <option value="2">stock2</option>
-                                  <option value="3">stock3</option>
-                                  <option value="n">stockn</option>
+                            {% for stock in watch_list %}
+                            <option value="1">{{stock.symbol}}</option>
+                            {% endfor %}
                                 </select></div>
                             </div>
                     </div>
