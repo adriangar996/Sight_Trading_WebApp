@@ -37,7 +37,7 @@ def portfolioView(request):
     user_id = request.user.id
 
     user = PortfolioUser.objects.filter(user=user_id)[0]
-    stock_list = StockPortfolio.objects.all()
+    stock_list = StockPortfolio.objects.filter(user_id=user)
 
     today_date = time.strftime("%d.%m.%Y %H:%M")
 
@@ -211,7 +211,7 @@ def watchlistView(request):
     user_id = request.user.id
 
     user = PortfolioUser.objects.filter(user=user_id)[0]
-    watch_list = Watchlist.objects.all()
+    watch_list = Watchlist.objects.filter(user_id=user)
 
     today_date = time.strftime("%d.%m.%Y %H:%M")
 
