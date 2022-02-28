@@ -138,7 +138,7 @@
                                     <table class="table table-striped table-hover">
                                         <thead>
                                           <tr>
-                                            <th scope="col">Select</th>
+                                            <th scope="col">Delete</th>
                                             <th scope="col">Stock</th>
                                             <th scope="col">Quantity Owned</th>
                                             <th scope="col">Buying Price</th>
@@ -150,16 +150,22 @@
                                         <tbody>
                                           {% for stock in stock_list %}
                                           <tr>
-                                            <td scope="row" class="align-middle ">
-                                                <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                </div></td>
+                                            <td data-title="remove" role="button" scope="row" class="align-middle ">
+                                                <form method="POST" class="form-horizontal">
+                                                    {% csrf_token %}
+                                                    <div class="block" class="form-group">
+                                                    <input type="hidden" name ="stock_symbol" value="{{ stock.symbol }}"/>
+                                                    <input name="remove_stock" class="btn btn-danger" type="submit" value="x">
+                                                    </div>
+                                                </form>
+                                            </td>
                                             <th scope="row" class="align-middle">{{stock.symbol}}</th>
                                             <td class="align-middle">{{stock.shares_owned}}</td>
                                             <td class="align-middle">${{stock.buying_price}}</td>  
                                             <td class="align-middle">${{ stock.price }}</td>
                                             <td class="align-middle">{{stock.gain_loss}}</td>
                                             <td class="align-middle text-info">Hold</td>
+
                                           </tr>
                                           {% endfor %}
                                             
@@ -169,10 +175,9 @@
                             </div>
                         </div>
         </div>
-
-      <button class="btn btn-danger">
+       <!--<button class="btn btn-danger">
     Delete Stock
-          </button>
+          </button>-->
     </section></div>
 
     <div class="modal mbr-popup cid-sYt0EplUzS fade" tabindex="-1" role="dialog" data-overlay-color="#000000" data-overlay-opacity="0.4" id="mbr-popup-59" aria-hidden="true">
