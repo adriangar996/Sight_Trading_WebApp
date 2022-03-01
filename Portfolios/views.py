@@ -147,7 +147,7 @@ def portfolioView(request):
             logger.info('Removing ' + symbol + ' from stock portfolio')
 
             StockPortfolio.objects.filter( user=user, symbol=symbol).delete()
-            stock_list = StockPortfolio.objects.all()
+            stock_list = StockPortfolio.objects.filter(user_id=user)
 
             delete_success_message = "Stock successfully removed from portfolio!"
 
@@ -160,7 +160,7 @@ def portfolioView(request):
 
     else:  # if there was no POST request - the whole portfolio should be updated
 
-        stocks = StockPortfolio.objects.all()  # This returns queryset
+        stocks = StockPortfolio.objects.filter(user_id=user)  # This returns queryset
 
         for stock in stocks:
 
@@ -307,7 +307,7 @@ def watchlistView(request):
             logger.info('Removing ' + symbol + ' from watchlist')
 
             Watchlist.objects.filter( user=user, symbol=symbol).delete()
-            watch_list = Watchlist.objects.all()
+            watch_list = Watchlist.objects.filter(user_id=user)
 
             delete_success_message = "Stock successfully removed from watchlist!"
 
@@ -320,7 +320,7 @@ def watchlistView(request):
 
     else:  # if there was no POST request - the whole watchlist should be updated
 
-        stocks = Watchlist.objects.all()  # This returns queryset
+        stocks = Watchlist.objects.filter(user_id=user)  # This returns queryset
 
         for stock in stocks:
 
