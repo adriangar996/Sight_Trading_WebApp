@@ -1,4 +1,5 @@
 {% load static %}
+{% load plotly_dash %}
 <!DOCTYPE html>
 <html  >
 <head>
@@ -87,20 +88,22 @@
                               <p class="card-text text-success">18.2% increase since last month</p>
                             </div>
                             <canvas id="chart1"></canvas>
+                            <!--<div> {{ candles | safe }} </div>-->
                           </div>
                           <div class="row">
                             <div class="col-auto">
                               <select class="form-select" aria-label="Select Chart">
-                            <option class="align-middle" selected="">Load Stock to Chart</option>
+                            <option class="align-middle" selected="">Select Stock Symbol</option>
                             {% for stock in stock_list %}
                             <option value="1">{{stock.symbol}}</option>
                             {% endfor %}
                                 </select></div>
                             </div>
+                            <button type="submit" class="btn btn-info">Load To Chart</button>
                     </div>
                     <div class="col-12 col-md-6 mb-4 mb-lg-0 col-xg-3">
                         <div class="card">
-                            <h5 class="card-header text-center"> "Stock 2 Name"</h5>
+                            <h5 class="card-header text-center"> "Stock 2 Name" </h5>
                             <div class="card-body">
                               <h5 class="card-title">$2.4k</h5>
                               <p class="card-text">Feb 1 - Apr 1</p>
@@ -111,25 +114,26 @@
                           <div class="row">
                             <div class="col-auto">
                               <select class="form-select" aria-label="Select Chart">
-                            <option class="align-middle" selected="">Load Stock to Chart</option>
+                            <option class="align-middle" selected="">Select Stock Symbol</option>
                             {% for stock in stock_list %}
                             <option value="1">{{stock.symbol}}</option>
                             {% endfor %}
                                 </select></div>
                             </div>
+                            <button type="submit" class="btn btn-info">Load To Chart</button>
                     </div>
                   </div>
                 
                   </div>
-                
+
                   <div class="row">
                         <div class="card">
                             <h5 class="card-header">Owned Stocks</h5>
                             <div class="card-body">
                                 <div>
-                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Stocks..">
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Stocks in Portfolio..">
                                 <button class="btn btn-info" href="#" data-toggle="modal" data-bs-toggle="modal" data-target="#mbr-popup-59" data-bs-target="#mbr-popup-59">
-    Add Stock
+    +Add Stock
   </button>
   </div>
                                 <div class="table-responsive-xl">
@@ -157,11 +161,15 @@
                                                     </div>
                                                 </form>
                                             </td>
-                                            <th scope="row" class="align-middle">{{stock.symbol}}</th>
+                                            <th scope="row" class="align-middle">{{stock.symbol}} ({{stock.name}})</th>{{stock.name}}
                                             <td class="align-middle">{{stock.shares_owned}}</td>
                                             <td class="align-middle">${{stock.buying_price}}</td>  
                                             <td class="align-middle">${{ stock.price }}</td>
-                                            <td class="align-middle">{{stock.gain_loss}}</td>
+                                            {% if stock.gain_loss > 0 %}
+                                                <td class="align-middle">+{{stock.gain_loss}}</td>
+                                            {% else %}
+                                                <td class="align-middle">-{{stock.gain_loss}}</td>
+                                            {% endif %}
                                             <td class="align-middle text-info">Hold</td>
 
                                           </tr>
@@ -300,5 +308,6 @@
   <input name="animation" type="hidden">
   <script>"use strict";if("loading"in HTMLImageElement.prototype){document.querySelectorAll('img[loading="lazy"],iframe[loading="lazy"]').forEach(e=>{e.src=e.dataset.src,e.style.paddingTop=100*e.getAttribute("data-aspectratio")+"%",e.style.height=0,e.onload=function(){e.removeAttribute("style")}})}else{const e=document.createElement("script");e.src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js",document.body.appendChild(e)}</script>
 
+  
 </body>
 </html>

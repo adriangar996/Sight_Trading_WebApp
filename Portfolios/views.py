@@ -4,13 +4,21 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Portfolios.models import StockPortfolio, PortfolioUser
 from Portfolios.models import Watchlist
-from yahoo_finance import Share
+import yfinance
 import time
 import decimal
 from .forms import AddStockForm, AddWatchlistForm
 from .functions import *
 import logging
 import requests
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from plotly.offline import plot
+from plotly.graph_objs import Scatter
+
+
+
+
 
 
 # CREATING LOGGER
@@ -355,6 +363,19 @@ def watchlistView(request):
         logger.info('Refreshing watchlist')
 
         return render(request, 'watchlist.html', context)
+
+#Getting and plotting data in functions.py and rendering to html here
+def chartView(request):
+    
+    candlestick = candles()
+
+    context={
+
+        'candlestick' : candlestick
+    }
+
+
+    return render(request, 'portfolio.html', context)
 
 def notificationsView(request):
 
