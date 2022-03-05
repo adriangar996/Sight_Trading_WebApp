@@ -56,8 +56,7 @@ def portfolioView(request):
     if request.method == 'POST':
         choice1 = request.POST.get('stock_selected1', '')
     else:
-        for stock in stock_list:
-            choice1 = stock.symbol 
+        choice1 = '' 
 
     #if request.method == 'POST':
         #choice2 = request.POST.get('stock_selected2', '')
@@ -69,7 +68,7 @@ def portfolioView(request):
     #candlestick2 = candles2(choice2)
 
     #Get current price and percent change from database for chart with user symbol choice 
-    chart_values1 = StockPortfolio.objects.filter(symbol=choice1)
+    chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
     #chart_values2 = StockPortfolio.objects.filter(symbol=choice2)
 
     #Get stock to be added to portfolio from user
@@ -130,8 +129,8 @@ def portfolioView(request):
                             stock.gain_loss = gain_loss
                             stock.save()
 
-                                    
-                            choice1 = stock.symbol  
+                            for stock in stock_list:        
+                                choice1 = stock.symbol  
                             #choice2 = 'AAPL'
 
                             #Getting and plotting data from functions.py to render in portfolio.html
@@ -139,7 +138,7 @@ def portfolioView(request):
                             #candlestick2 = candles2(choice2)
 
                             #Get current price and percent change from database for chart with user symbol choice 
-                            chart_values1 = StockPortfolio.objects.filter(symbol=choice1)
+                            chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
                             #chart_values2 = StockPortfolio.objects.filter(symbol=choice2)
 
                             context = {
@@ -217,8 +216,8 @@ def portfolioView(request):
 
             delete_success_message = "Stock successfully removed from portfolio!"
 
-            
-            choice1 = stock.symbol  
+            for stock in stock_list:
+                choice1 = stock.symbol 
             #choice2 = 'AAPL'
 
             #Getting and plotting data from functions.py to render in portfolio.html
@@ -273,6 +272,12 @@ def portfolioView(request):
 
             # update current lines
             stock.save(update_fields=['price', 'change', 'gain_loss'])  # do not create new object in db,
+
+            choice1 = stock.symbol
+
+            candlestick1 = candles1(choice1)
+
+            chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
             
         context = {
             'stock_list': stock_list,
@@ -305,14 +310,13 @@ def watchlistView(request):
     user = PortfolioUser.objects.filter(user=user_id)[0]
     watch_list = Watchlist.objects.filter(user_id=user)
 
-    today_date = time.strftime("%d.%m.%Y %H:%M")
+    today_date = time.strftime("%d.%m.%Y")
 
     #Get stock the user selected from dropdown for loading to chart
     if request.method == 'POST':
         choice1 = request.POST.get('stock_selected1', '')
     else:
-        for stock in watch_list:
-            choice1 = stock.symbol 
+        choice1 = ''
 
     #if request.method == 'POST':
         #choice2 = request.POST.get('stock_selected2', '')
@@ -324,7 +328,7 @@ def watchlistView(request):
     #candlestick4 = candles4(choice2)
 
     #Get current price and percent change from database for chart with user symbol choice 
-    chart_values3 = StockPortfolio.objects.filter(symbol=choice1)
+    chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
     #chart_values4 = StockPortfolio.objects.filter(symbol=choice2)
     
     if 'add_stock' in request.POST:
@@ -371,7 +375,8 @@ def watchlistView(request):
 
                             add_success_message = "Stock successfully added to watchlist!"
 
-                            choice1 = stock.symbol 
+                            for stock in watch_list:
+                                choice1 = stock.symbol 
                             #choice2 = 'AAPL'
 
                             #Getting and plotting data from functions.py to render in portfolio.html
@@ -379,7 +384,7 @@ def watchlistView(request):
                             #candlestick4 = candles4(choice2)
 
                             #Get current price and percent change from database for chart with user symbol choice 
-                            chart_values3 = StockPortfolio.objects.filter(symbol=choice1)
+                            chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
                             #chart_values4 = StockPortfolio.objects.filter(symbol=choice2)
 
                             context = {
@@ -457,7 +462,8 @@ def watchlistView(request):
 
             delete_success_message = "Stock successfully removed from watchlist!"
 
-            choice1 = stock.symbol 
+            for stock in watch_list:
+                choice1 = stock.symbol 
             #choice2 = 'AAPL'
 
             #Getting and plotting data from functions.py to render in portfolio.html
@@ -465,7 +471,7 @@ def watchlistView(request):
             #candlestick4 = candles4(choice2)
 
             #Get current price and percent change from database for chart with user symbol choice 
-            chart_values3 = StockPortfolio.objects.filter(symbol=choice1)
+            chart_values3 = Watchlist.objects.filter(symbol=choice1)
             #chart_values4 = StockPortfolio.objects.filter(symbol=choice2)
 
             context = {
@@ -509,6 +515,12 @@ def watchlistView(request):
 
                 stock.save(update_fields=['price', 'change'])  # do not create new object in db,
                 # update current lines
+
+                choice1 = stock.symbol
+
+                candlestick3 = candles1(choice1)
+
+                chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
 
         context = {
             'watch_list': watch_list,
