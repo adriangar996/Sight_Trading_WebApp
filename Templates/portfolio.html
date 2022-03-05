@@ -79,7 +79,7 @@
                 
                   <h1>Portfolio</h1>
                   <div class="row">
-                    <div class="col-12 col-md-6 col-xg-3 mb-4 mb-lg-0">
+                    <div class="col-12 col-md-7 col-xg-3 mb-4 mb-lg-0">
                         <div class="card">
                             <h5 class="card-header text-center">{{choice1}}</h5>
                             <div class="card-body">
@@ -115,10 +115,44 @@
                           </form>
                     </div>
                         
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-xg-3">
+                    <div class="col-12 col-md-5 mb-4 mb-lg-0 col-xg-3">
                         <div class="card">
-                            <h5 class="card-header text-center">{{choice2}}</h5>
+                            <h5 class="card-header text-center">{{choice1}} Predictions</h5>
                             <div class="card-body">
+                            <div class="table-responsive-xl">
+                            <table class="table table-striped table-hover">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Interval</th>
+                                  <th scope="col">Price</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1 Day Prediction</th>
+                                  <td class="align-middle">$</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">5 Day Prediction</th>
+                                  <td class="align-middle">$</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">14 Day Prediction</th>
+                                  <td class="align-middle">$</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">30 Day Prediction</th>
+                                  <td class="align-middle">$</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">90 Day Prediction</th>
+                                  <td class="align-middle">$</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            <!--<div class="card-body">
                             {% for value in chart_values2 %}
                                 <h5 class="card-title">{{value.name}}</h5>
                             {% endfor %}
@@ -148,7 +182,7 @@
                                 </select></div>
                             </div>
                                 <button type="submit" class="btn btn-info">Load To Chart</button>
-                            </form>
+                            </form>-->
                     </div>
                     
                   </div>
@@ -156,7 +190,7 @@
 
                   <div class="row">
                         <div class="card">
-                            <h5 class="card-header">Owned Stocks</h5>
+                            <h5 class="card-header text-center">Owned Stocks</h5>
                             <div class="card-body">
                                 <div>
                                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Stocks in Portfolio..">
