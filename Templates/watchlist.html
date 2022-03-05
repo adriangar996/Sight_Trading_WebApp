@@ -79,48 +79,77 @@
                   <div class="row">
                     <div class="col-12 col-md-6 col-xg-3 mb-4 mb-lg-0">
                         <div class="card">
-                            <h5 class="card-header text-center">"Stock 1 Name"</h5>
+                            <h5 class="card-header text-center">{{choice1}}</h5>
                             <div class="card-body">
-                              <h5 class="card-title">S345k</h5>
-                              <p class="card-text">Feb 1 - Apr 1</p>
-                              <p class="card-text text-success">18.2% increase since last month</p>
-                            </div>
-                            <canvas id="chart3"></canvas>
-                          </div>
-                          <div class="row">
-                            <div class="col-auto">
-                              <select class="form-select" aria-label="Select Chart">
-                            <option class="align-middle" selected="">Select Stock Symbol</option>
-                            {% for stock in watch_list %}
-                            <option value="1">{{stock.symbol}}</option>
+                            {% for value in chart_values3 %}
+                                <h5 class="card-title">{{value.name}}</h5>
                             {% endfor %}
-                                </select></div>
+                            {% for value in chart_values3 %}
+                                <h5 class="card-title">Price: ${{value.price}}</h5>
+                            {% endfor %}
+                                <p class="card-text">Today's Date: {{today_date}}</p>
+                            {% for value in chart_values3 %}
+                              {% if value.change > 0 %}
+                                <p class="card-text text-success">Change Percent: {{value.change}}%</p>
+                              {% else %}
+                                <p class="card-text text-danger">Change Percent: {{value.change}}%</p>
+                              {% endif %}
+                            {% endfor %}
                             </div>
-                            <button type="submit" class="btn btn-info">Load To Chart</button>
+                            <div> {{ candlestick3 | safe }} </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-auto">
+                          <form method="POST">
+                          {% csrf_token %}
+                            <select name="stock_selected1" id="stock_selected1" class="form-select" aria-label="Select Chart">
+                            <option class="align-middle" selected="">Select Stock Symbol</option>
+                                {% for stock in watch_list %}
+                                    <option value={{stock.symbol}}>{{stock.symbol}}</option>
+                                {% endfor %}
+                            </select></div>
+                        </div>
+                        <button type="submit" class="btn btn-info">Load To Chart</button>
+                          </form>
                     </div>
+                        
                     <div class="col-12 col-md-6 mb-4 mb-lg-0 col-xg-3">
                         <div class="card">
-                            <h5 class="card-header text-center"> "Stock 2 Name"</h5>
+                            <h5 class="card-header text-center">{{choice2}}</h5>
                             <div class="card-body">
-                              <h5 class="card-title">$2.4k</h5>
-                              <p class="card-text">Feb 1 - Apr 1</p>
-                              <p class="card-text text-danger">5.6% decrease since last month</p>
+                            {% for value in chart_values4 %}
+                                <h5 class="card-title">{{value.name}}</h5>
+                            {% endfor %}
+                            {% for value in chart_values4 %}
+                                <h5 class="card-title">Price: ${{value.price}}</h5>
+                            {% endfor %}
+                                <p class="card-text">Today's Date: {{today_date}}</p>
+                            {% for value in chart_values4 %}
+                              {% if value.change > 0 %}
+                                <p class="card-text text-success">Change Percent: {{value.change}}%</p>
+                              {% else %}
+                                <p class="card-text text-danger">Change Percent: {{value.change}}%</p>
+                              {% endif %}
+                            {% endfor %}
                             </div>
-                            <canvas id="chart4"></canvas>
-                          </div>
-                          <div class="row">
-                            <div class="col-auto">
-                              <select class="form-select" aria-label="Select Chart">
+                            <div> {{ candlestick4 | safe }} </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-auto">
+                          <form method="POST">
+                          {% csrf_token %}
+                            <select name="stock_selected2" id="stock_selected2" class="form-select" aria-label="Select Chart">
                             <option class="align-middle" selected="">Select Stock Symbol</option>
                             {% for stock in watch_list %}
-                            <option value="1">{{stock.symbol}}</option>
+                                <option value={{stock.symbol}}>{{stock.symbol}}</option>
                             {% endfor %}
                                 </select></div>
                             </div>
-                            <button type="submit" class="btn btn-info">Load To Chart</button>
+                                <button type="submit" class="btn btn-info">Load To Chart</button>
+                            </form>
                     </div>
+                    
                   </div>
-                
                   </div>
                 
                   <div class="row">
@@ -159,9 +188,9 @@
                                             <th scope="row" class="align-middle">{{stock.symbol}} ({{stock.name}})</th>
                                             <td class="align-middle">${{stock.price}}</td>
                                             {% if stock.change > 0 %}
-                                                <td class="align-middle">+{{stock.change}}%</td>
+                                                <td class="align-middle text-success">+{{stock.change}}%</td>
                                             {% else %}
-                                                <td class="align-middle">+{{stock.change}}%</td>
+                                                <td class="align-middle text-danger">-{{stock.change}}%</td>
                                             {% endif %}
                                             <td class="align-middle text-info">Wait</td>
                                          </tr>
@@ -173,10 +202,6 @@
                             </div>
                         </div>
         </div>
-
-      <!--<button class="btn btn-danger">
-    Delete Stock
-          </button>-->
     </section></div>
 
     <div class="modal mbr-popup cid-sYt0EplUzS fade" tabindex="-1" role="dialog" data-overlay-color="#000000" data-overlay-opacity="0.4" id="mbr-popup-59" aria-hidden="true">

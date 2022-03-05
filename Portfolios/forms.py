@@ -8,5 +8,8 @@ class AddStockForm(forms.Form):
 class AddWatchlistForm(forms.Form):
     add_stock = forms.CharField(label='add_stock', max_length=10)
 
+class SelectedStockForm(forms.Form):
+    selected_stock = forms.CharField(label='selected_stock', max_length=10)
+
 class RemoveStockForm(forms.Form):
     remove_stock = forms.CharField(label='remove_stock')
