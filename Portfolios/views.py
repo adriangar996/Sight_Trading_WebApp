@@ -11,9 +11,9 @@ from .forms import AddStockForm, AddWatchlistForm
 from .functions import *
 import logging
 import requests
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from plotly.offline import plot
+#import plotly.graph_objects as go
+#from plotly.subplots import make_subplots
+#from plotly.offline import plot
 
 
 
