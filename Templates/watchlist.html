@@ -77,7 +77,6 @@
                 
                   <h1>Watch-list</h1>
                   <div class="row">
-                    <div class="col-12 col-md-6 col-xg-3 mb-4 mb-lg-0">
                         <div class="card">
                             <h5 class="card-header text-center">{{choice1}} Chart</h5>
                             <div class="card-body">
@@ -96,7 +95,7 @@
                               {% endif %}
                             {% endfor %}
                             </div>
-                            <div> {{ candlestick3 | safe }} </div>
+                            <div class="row"> {{ candlestick3 | safe }} </div>
                         </div>
                         <div class="row">
                           <div class="col-auto">
@@ -109,11 +108,11 @@
                                 {% endfor %}
                             </select></div>
                         </div>
-                        <button type="submit" class="btn btn-info">Load To Chart</button>
+                        <div><button type="submit" class="btn btn-info">Load To Chart</button></div>
                           </form>
+                        </div>
                     </div>
-                        
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-xg-3">
+                 <div class="row">    
                         <div class="card">
                             <h5 class="card-header text-center">{{choice1}} Predictions</h5>
                             <div class="card-body">
@@ -184,8 +183,8 @@
                     </div>
                     
                   </div>
-                  </div>
-                
+                </div>
+                <div>
                   <div class="row">
                         <div class="card">
                             <h5 class="card-header text-center">Watched Stocks</h5>
@@ -236,6 +235,7 @@
                             </div>
                         </div>
         </div>
+    
     </section></div>
 
     <div class="modal mbr-popup cid-sYt0EplUzS fade" tabindex="-1" role="dialog" data-overlay-color="#000000" data-overlay-opacity="0.4" id="mbr-popup-59" aria-hidden="true">

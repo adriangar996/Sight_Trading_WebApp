@@ -79,7 +79,6 @@
                 
                   <h1>Portfolio</h1>
                   <div class="row">
-                    <div class="col-12 col-md-6 col-xg-3 mb-4 mb-lg-0">
                         <div class="card">
                             <h5 class="card-header text-center">{{choice1}} Chart</h5>
                             <div class="card-body">
@@ -98,7 +97,7 @@
                               {% endif %}
                             {% endfor %}
                             </div>
-                            <div> {{ candlestick1 | safe }} </div>
+                            <div class="row"> {{ candlestick1 | safe }} </div>
                         </div>
                         <div class="row">
                           <div class="col-auto">
@@ -111,11 +110,11 @@
                                 {% endfor %}
                             </select></div>
                         </div>
-                        <button type="submit" class="btn btn-info">Load To Chart</button>
+                        <div><button type="submit" class="btn btn-info">Load To Chart</button></div>
                           </form>
                     </div>
                         
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-xg-3">
+                    <div class="row">
                         <div class="card">
                             <h5 class="card-header text-center">{{choice1}} Predictions</h5>
                             <div class="card-body">
@@ -187,7 +186,7 @@
                     
                   </div>
                   </div>
-
+                </div>
                   <div class="row">
                         <div class="card">
                             <h5 class="card-header text-center">Owned Stocks</h5>
