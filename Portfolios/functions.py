@@ -36,7 +36,7 @@ def candles1(choice1):
     layout = figure.update_layout(
             #autosize = False,
             #width = 1000,
-            #height = 680,
+            height = 680,
             paper_bgcolor="rgb(254,217,166)",
             plot_bgcolor = 'rgb(242,242,242)',
             title = {
@@ -131,7 +131,7 @@ def candles3(choice1):
     layout = figure.update_layout(
             #autosize = False,
             #width = 1000,
-            #height = 680,
+            height = 680,
             paper_bgcolor="rgb(254,217,166)",
             plot_bgcolor = 'rgb(242,242,242)',
             title = {
