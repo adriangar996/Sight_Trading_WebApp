@@ -29,6 +29,15 @@ class Watchlist(models.Model):
   change = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
   signal = models.CharField(default='', max_length=1)
 
+# class Predictions(models.Model):
+#   '''Predictions Table to maintain stock predictions'''
+#   symbol = models.CharField(default='', max_length=1)
+#   day1 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+#   day5 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+#   day14 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+#   day30 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+#   day90 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
   class Meta:
     '''The ForeignKey i.e. user and a stock symbol must be unique'''
     unique_together = ('user', 'symbol')
