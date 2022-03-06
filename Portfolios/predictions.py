@@ -11,6 +11,7 @@ from sklearn.preprocessing import MinMaxScaler # Used to scale data
 from keras.models import load_model # Used to load existing models
 import datetime
 import joblib
+
 def models_loader(folder, name, days = [1, 5, 30]):
     model = []
     for i in days:

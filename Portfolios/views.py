@@ -11,13 +11,6 @@ from .forms import AddStockForm, AddWatchlistForm
 from .functions import *
 import logging
 import requests
-#import plotly.graph_objects as go
-#from plotly.subplots import make_subplots
-#from plotly.offline import plot
-
-
-
-
 
 
 # CREATING LOGGER
@@ -55,20 +48,13 @@ def portfolioView(request):
     if request.method == 'POST':
         choice1 = request.POST.get('stock_selected1', '')
     else:
-        choice1 = '' 
-
-    #if request.method == 'POST':
-        #choice2 = request.POST.get('stock_selected2', '')
-    #else:
-        #choice2 = 'AAPL'  
+        choice1 = ''  
 
     #Getting and plotting data from functions.py to render in portfolio.html
     candlestick1 = candles1(choice1)
-    #candlestick2 = candles2(choice2)
 
     #Get current price and percent change from database for chart with user symbol choice 
     chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
-    #chart_values2 = StockPortfolio.objects.filter(symbol=choice2)
 
     #Get stock to be added to portfolio from user
     if 'add_stock' in request.POST:
@@ -130,26 +116,20 @@ def portfolioView(request):
 
                             for stock in stock_list:        
                                 choice1 = stock.symbol  
-                            #choice2 = 'AAPL'
 
                             #Getting and plotting data from functions.py to render in portfolio.html
                             candlestick1 = candles1(choice1)
-                            #candlestick2 = candles2(choice2)
 
                             #Get current price and percent change from database for chart with user symbol choice 
                             chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
-                            #chart_values2 = StockPortfolio.objects.filter(symbol=choice2)
 
                             context = {
                                 'stock_list': stock_list,
                                 'today_date': today_date,
                                 'add_success_message': add_success_message,
                                 'choice1' : choice1,
-                                #'choice2' : choice2,
                                 'candlestick1' : candlestick1,
-                                #'candlestick2' : candlestick2,
                                 'chart_values1' : chart_values1,
-                                #'chart_values2' : chart_values2
                             }
                             return render(request, 'portfolio.html', context)
 
@@ -162,11 +142,8 @@ def portfolioView(request):
                             'today_date': today_date,
                             'error_message': error_message,
                             'choice1' : choice1,
-                            #'choice2' : choice2,
                             'candlestick1' : candlestick1,
-                            #'candlestick2' : candlestick2,
                             'chart_values1' : chart_values1,
-                            #'chart_values2' : chart_values2
                         }
                         return render(request, 'portfolio.html', context)
 
@@ -178,11 +155,8 @@ def portfolioView(request):
                         'today_date': today_date,
                         'stock_exists_message': stock_exists_message,
                         'choice1' : choice1,
-                        #'choice2' : choice2,
                         'candlestick1' : candlestick1,
-                        #'candlestick2' : candlestick2,
                         'chart_values1' : chart_values1,
-                        #'chart_values2' : chart_values2
                     }
                     return render(request, 'portfolio.html', context)
 
@@ -194,11 +168,8 @@ def portfolioView(request):
                     'today_date': today_date,
                     'error_message': error_message,
                     'choice1' : choice1,
-                    #'choice2' : choice2,
                     'candlestick1' : candlestick1,
-                    #'candlestick2' : candlestick2,
                     'chart_values1' : chart_values1,
-                    #'chart_values2' : chart_values2
                 }
                 return render(request, 'portfolio.html', context)
 
@@ -217,26 +188,20 @@ def portfolioView(request):
 
             for stock in stock_list:
                 choice1 = stock.symbol 
-            #choice2 = 'AAPL'
 
             #Getting and plotting data from functions.py to render in portfolio.html
             candlestick1 = candles1(choice1)
-            #candlestick2 = candles2(choice2)
 
             #Get current price and percent change from database for chart with user symbol choice 
             chart_values1 = StockPortfolio.objects.filter(symbol=choice1)
-            #chart_values2 = StockPortfolio.objects.filter(symbol=choice2)
 
             context = {
                 'stock_list': stock_list,
                 'today_date': today_date,
                 'delete_success_message': delete_success_message,
                 'choice1' : choice1,
-                #'choice2' : choice2,
                 'candlestick1' : candlestick1,
-                #'candlestick2' : candlestick2,
                 'chart_values1' : chart_values1,
-                #'chart_values2' : chart_values2
             }
             return render(request, 'portfolio.html', context)
 
@@ -282,11 +247,8 @@ def portfolioView(request):
             'stock_list': stock_list,
             'today_date': today_date,
             'choice1' : choice1,
-            #'choice2' : choice2,
             'candlestick1' : candlestick1,
-            #'candlestick2' : candlestick2,
             'chart_values1' : chart_values1,
-            #'chart_values2' : chart_values2
         }
 
         logger.info('Refreshing stock list')
@@ -315,20 +277,13 @@ def watchlistView(request):
     if request.method == 'POST':
         choice1 = request.POST.get('stock_selected1', '')
     else:
-        choice1 = ''
-
-    #if request.method == 'POST':
-        #choice2 = request.POST.get('stock_selected2', '')
-    #else:
-        #choice2 = 'AAPL'  
+        choice1 = '' 
 
     #Getting and plotting data from functions.py to render in portfolio.html
     candlestick3 = candles3(choice1)
-    #candlestick4 = candles4(choice2)
 
     #Get current price and percent change from database for chart with user symbol choice 
     chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
-    #chart_values4 = StockPortfolio.objects.filter(symbol=choice2)
     
     if 'add_stock' in request.POST:
 
@@ -376,26 +331,20 @@ def watchlistView(request):
 
                             for stock in watch_list:
                                 choice1 = stock.symbol 
-                            #choice2 = 'AAPL'
 
                             #Getting and plotting data from functions.py to render in portfolio.html
                             candlestick3 = candles3(choice1)
-                            #candlestick4 = candles4(choice2)
 
                             #Get current price and percent change from database for chart with user symbol choice 
                             chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
-                            #chart_values4 = StockPortfolio.objects.filter(symbol=choice2)
 
                             context = {
                                 'watch_list': watch_list,
                                 'today_date': today_date,
                                 'add_success_message': add_success_message,
                                 'choice1' : choice1,
-                                #'choice2' : choice2,
                                 'candlestick3' : candlestick3,
-                                #'candlestick4' : candlestick4,
                                 'chart_values3' : chart_values3,
-                                #'chart_values4' : chart_values4
                             }
                             return render(request, 'watchlist.html', context)
 
@@ -408,11 +357,8 @@ def watchlistView(request):
                             'today_date': today_date,
                             'error_message': error_message,
                             'choice1' : choice1,
-                            #'choice2' : choice2,
                             'candlestick3' : candlestick3,
-                            #'candlestick4' : candlestick4,
                             'chart_values3' : chart_values3,
-                            #'chart_values4' : chart_values4
                         }
                         return render(request, 'watchlist.html', context)
 
@@ -424,11 +370,8 @@ def watchlistView(request):
                         'today_date': today_date,
                         'stock_exists_message': stock_exists_message,
                         'choice1' : choice1,
-                        #'choice2' : choice2,
                         'candlestick3' : candlestick3,
-                        #'candlestick4' : candlestick4,
                         'chart_values3' : chart_values3,
-                        #'chart_values4' : chart_values4
                     }
                     return render(request, 'watchlist.html', context)
 
@@ -440,11 +383,8 @@ def watchlistView(request):
                     'today_date': today_date,
                     'error_message': error_message,
                     'choice1' : choice1,
-                    #'choice2' : choice2,
                     'candlestick3' : candlestick3,
-                    #'candlestick4' : candlestick4,
                     'chart_values3' : chart_values3,
-                    #'chart_values4' : chart_values4
                 }
                 return render(request, 'watchlist.html', context)
 
@@ -463,26 +403,20 @@ def watchlistView(request):
 
             for stock in watch_list:
                 choice1 = stock.symbol 
-            #choice2 = 'AAPL'
 
             #Getting and plotting data from functions.py to render in portfolio.html
             candlestick3 = candles3(choice1)
-            #candlestick4 = candles4(choice2)
 
             #Get current price and percent change from database for chart with user symbol choice 
             chart_values3 = Watchlist.objects.filter(symbol=choice1)
-            #chart_values4 = StockPortfolio.objects.filter(symbol=choice2)
 
             context = {
                 'watch_list': watch_list,
                 'today_date': today_date,
                 'delete_success_message': delete_success_message,
                 'choice1' : choice1,
-                #'choice2' : choice2,
                 'candlestick3' : candlestick3,
-                #'candlestick4' : candlestick4,
                 'chart_values3' : chart_values3,
-                #'chart_values4' : chart_values4
             }
             return render(request, 'watchlist.html', context)
 
@@ -525,18 +459,14 @@ def watchlistView(request):
             'watch_list': watch_list,
             'today_date': today_date,
             'choice1' : choice1,
-            #'choice2' : choice2,
             'candlestick3' : candlestick3,
-            #'candlestick4' : candlestick4,
             'chart_values3' : chart_values3,
-            #'chart_values4' : chart_values4
         }
 
         logger.info('Refreshing watchlist')
 
         return render(request, 'watchlist.html', context)
 
-#Getting and plotting data in functions.py and rendering to html here
 
 def notificationsView(request):
 
