@@ -10,19 +10,22 @@ Set up Project:
 9. Migrate Django's sqlite3 database: python3 manage.py migrate
 10.Run Development Server: python3 manage.py runserver
 
-
 Front-end ToDo:
 -Fix full vertical page fill
 -add password container in account
 -Create High Contrast Version
 -Create Dark Version
+-Popup for password Change
+-Popup for password Recovery
 
 Back-end ToDo:
+-Mail Client
+-Password Recovery Scripts
+-Password Change Scripts
 -Entry Error text Styling->Justification To center & text-color to red
 -Create Settings Page scripts
 -Create Notifications Scripts
 -Connect Notifications Page
 -Connect High Contrast Version
 -Connect Dark Version
--send user password when forgot password is processed
-
+-Send user temporary password when forgot password is processed
