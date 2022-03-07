@@ -14,21 +14,12 @@ Set up Project:
 Front-end ToDo:
 -Fix full vertical page fill
 -add password container in account
--Fix Breadcrumb linking
--Fix Notifications.html
--Add Prediction periods columns to portfolio/watchlist tables
 -Create High Contrast Version
 -Create Dark Version
 
 Back-end ToDo:
--Add data to charts
 -Entry Error text Styling->Justification To center & text-color to red
--add %static% tags to new things in portfolio and notifications
--when logged dont allow login or signup pages and remove access links
--Connect Account Page
 -Create Settings Page scripts
-Connect Settings Page
--Connect Portfolio/Watchlist Charts and tables
 -Create Notifications Scripts
 -Connect Notifications Page
 -Connect High Contrast Version
