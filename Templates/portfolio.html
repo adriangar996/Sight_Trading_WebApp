@@ -81,22 +81,7 @@
                     <div class="col-12 col-md-7 col-xg-3 mb-4 mb-lg-0">
                         <div class="card">
                             <h5 class="card-header text-center">{{choice1}} Chart</h5>
-                            <div class="card-body">
-                            {% for value in chart_values1 %}
-                                <h5 class="card-title">{{value.name}}</h5>
-                            {% endfor %}
-                            {% for value in chart_values1 %}
-                                <h5 class="card-title">Price: ${{value.price}}</h5>
-                            {% endfor %}
-                                <p class="card-text">Today's Date: {{today_date}}</p>
-                            {% for value in chart_values1 %}
-                              {% if value.change > 0 %}
-                                <p class="card-text text-success">Change Percent: {{value.change}}%</p>
-                              {% else %}
-                                <p class="card-text text-danger">Change Percent: {{value.change}}%</p>
-                              {% endif %}
-                            {% endfor %}
-                            </div>
+                            
                             <div> {{ candlestick1 | safe }} </div>
                         </div>
                         <div class="row">
@@ -116,8 +101,25 @@
                         
                     <div class="col-12 col-md-5 mb-4 mb-lg-0 col-xg-3">
                         <div class="card">
-                            <h5 class="card-header text-center">{{choice1}} Predictions</h5>
+                            <h5 class="card-header text-center">{{choice1}} Details</h5>
                             <div class="card-body">
+                              <div>
+                                {% for value in chart_values1 %}
+                                    <h5 class="card-title">{{value.name}}</h5>
+                                {% endfor %}
+                                {% for value in chart_values1 %}
+                                    <h5 class="card-title">Price: ${{value.price}}</h5>
+                                {% endfor %}
+                                    <p class="card-text">Today's Date: {{today_date}}</p>
+                                {% for value in chart_values1 %}
+                                  {% if value.change > 0 %}
+                                    <p class="card-text text-success">Change Percent: {{value.change}}%</p>
+                                  {% else %}
+                                    <p class="card-text text-danger">Change Percent: {{value.change}}%</p>
+                                  {% endif %}
+                                {% endfor %}
+                                </div>
+                                <h5 class="card-header text-center">{{choice1}} Predictions</h5>
                             <div class="table-responsive-xl">
                             <table class="table table-striped table-hover">
                               <thead>
@@ -183,6 +185,7 @@
                                 <button type="submit" class="btn btn-info">Load To Chart</button>
                             </form>-->
                             <!-- TradingView Widget BEGIN -->
+                            <h5 class="card-header text-center">{{choice1}} News</h5>
                             <div class="tradingview-widget-container">
                               <div class="tradingview-widget-container__widget"></div>
                               <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/history-timeline/" rel="noopener" target="_blank"><span class="blue-text">{{choice1}}</span></a> News</div>
@@ -193,11 +196,12 @@
                               "colorTheme": "light",
                               "isTransparent": true,
                               "displayMode": "regular",
-                              "height": 550,
+                              "height": 300,
                               "locale": "en"
                             }
                               </script>
                             </div>
+                          </div>
                             <!-- TradingView Widget END -->
                     </div>
                     
