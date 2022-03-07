@@ -10,6 +10,7 @@ import pandas as pd # Used to create a dataframe that holds all data
 from keras.models import load_model # Used to load existing models
 import datetime
 import joblib 
+#from Dashboards.models import Predictions
 
 def models_loader(folder, name, days = [1, 5, 30]):
     model = []
@@ -20,7 +21,7 @@ print("Hi")
 days = [1,5,14,30,90] #Los Dias que el modelo funciona
 scaler = joblib.load('scaler.sav')
 
-models = models_loader('Models','Model', days) #lodear los modelos 
+models = models_loader('ML Model','Model', days) #lodear los modelos 
 #Buscar el dia y calcular 75 dias en el pasado
 
 has_Run = False
