@@ -12,11 +12,8 @@ Set up Project:
 
 Front-end ToDo:
 -Fix full vertical page fill
--add password container in account
 -Create High Contrast Version
 -Create Dark Version
--Popup for password Change
--Popup for password Recovery
 
 Back-end ToDo:
 -Mail Client
