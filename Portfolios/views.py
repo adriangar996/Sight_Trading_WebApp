@@ -237,7 +237,10 @@ def portfolioView(request):
             # update current lines
             stock.save(update_fields=['price', 'change', 'gain_loss'])  # do not create new object in db,
 
-            choice1 = stock.symbol
+            if request.method == 'POST':
+                choice1 = request.POST.get('stock_selected1', '')
+            else:
+                choice1 = stock.symbol 
 
             candlestick1 = candles1(choice1)
 
@@ -449,7 +452,10 @@ def watchlistView(request):
                 stock.save(update_fields=['price', 'change'])  # do not create new object in db,
                 # update current lines
 
-                choice1 = stock.symbol
+                if request.method == 'POST':
+                    choice1 = request.POST.get('stock_selected1', '')
+                else:
+                    choice1 = stock.symbol 
 
                 candlestick3 = candles1(choice1)
 
