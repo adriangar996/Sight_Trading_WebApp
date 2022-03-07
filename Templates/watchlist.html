@@ -64,7 +64,7 @@
         </nav>
     </section>
     
-  <div id="custom-html-4v"><!-- Type valid HTML here -->
+  <div id="custom-html-4v">
 
     <section>
     <div class="container-fluid">
@@ -154,37 +154,6 @@
                             </table>
                             </div>
                             </div>
-                            <!--<div class="card-body">
-                            {% for value in chart_values4 %}
-                                <h5 class="card-title">{{value.name}}</h5>
-                            {% endfor %}
-                            {% for value in chart_values4 %}
-                                <h5 class="card-title">Price: ${{value.price}}</h5>
-                            {% endfor %}
-                                <p class="card-text">Today's Date: {{today_date}}</p>
-                            {% for value in chart_values4 %}
-                              {% if value.change > 0 %}
-                                <p class="card-text text-success">Change Percent: {{value.change}}%</p>
-                              {% else %}
-                                <p class="card-text text-danger">Change Percent: {{value.change}}%</p>
-                              {% endif %}
-                            {% endfor %}
-                            </div>
-                            <div> {{ candlestick4 | safe }} </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-auto">
-                          <form method="POST">
-                          {% csrf_token %}
-                            <select name="stock_selected2" id="stock_selected2" class="form-select" aria-label="Select Chart">
-                            <option class="align-middle" selected="">Select Stock Symbol</option>
-                            {% for stock in watch_list %}
-                                <option value={{stock.symbol}}>{{stock.symbol}}</option>
-                            {% endfor %}
-                                </select></div>
-                            </div>
-                                <button type="submit" class="btn btn-info">Load To Chart</button>
-                            </form>-->
                             <!-- TradingView Widget BEGIN -->
                             <h5 class="card-header text-center">{{choice1}} News</h5>
                             <div class="tradingview-widget-container">
@@ -214,7 +183,6 @@
                             <h5 class="card-header text-center">Watched Stocks</h5>
                             <div class="card-body">
                                 <div>
-                                <!--<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Stocks..">-->
                                 <button class="btn btn-info" href="#" data-toggle="modal" data-bs-toggle="modal" data-target="#mbr-popup-59" data-bs-target="#mbr-popup-59">
     +Add Stock
   </button>
