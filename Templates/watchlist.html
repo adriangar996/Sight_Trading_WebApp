@@ -70,7 +70,8 @@
     <div class="container-fluid">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                      <li class="breadcrumb-item"><a href="../dashboardindex">Index</a></li>
+                      <li class="breadcrumb-item"><a href="../portfolio">Portfolio</a></li>
                       <li class="breadcrumb-item active" aria-current="page">Watch-list</li>
                     </ol>
                   </nav>
@@ -80,22 +81,7 @@
                     <div class="col-12 col-md-7 col-xg-3 mb-4 mb-lg-0">
                         <div class="card">
                             <h5 class="card-header text-center">{{choice1}} Chart</h5>
-                            <div class="card-body">
-                            {% for value in chart_values3 %}
-                                <h5 class="card-title">{{value.name}}</h5>
-                            {% endfor %}
-                            {% for value in chart_values3 %}
-                                <h5 class="card-title">Price: ${{value.price}}</h5>
-                            {% endfor %}
-                                <p class="card-text">Today's Date: {{today_date}}</p>
-                            {% for value in chart_values3 %}
-                              {% if value.change > 0 %}
-                                <p class="card-text text-success">Change Percent: {{value.change}}%</p>
-                              {% else %}
-                                <p class="card-text text-danger">Change Percent: {{value.change}}%</p>
-                              {% endif %}
-                            {% endfor %}
-                            </div>
+                            <p></p>
                             <div> {{ candlestick3 | safe }} </div>
                         </div>
                         <div class="row">
@@ -115,8 +101,26 @@
                         
                     <div class="col-12 col-md-5 mb-4 mb-lg-0 col-xg-3">
                         <div class="card">
-                            <h5 class="card-header text-center">{{choice1}} Predictions</h5>
+                            <h5 class="card-header text-center">{{choice1}} Details</h5>
                             <div class="card-body">
+                              <div>
+                              {% for value in chart_values3 %}
+                                  <h5 class="card-title">{{value.name}}</h5>
+                              {% endfor %}
+                              {% for value in chart_values3 %}
+                                  <h5 class="card-title">Price: ${{value.price}}</h5>
+                              {% endfor %}
+                                  <p class="card-text">Today's Date: {{today_date}}</p>
+                              {% for value in chart_values3 %}
+                                {% if value.change > 0 %}
+                                  <p class="card-text text-success">Change Percent: {{value.change}}%</p>
+                                {% else %}
+                                  <p class="card-text text-danger">Change Percent: {{value.change}}%</p>
+                                {% endif %}
+                              {% endfor %}
+                              <p></p>
+                              </div>
+                              <h5 class="card-header text-center">{{choice1}} Predictions</h5>
                             <div class="table-responsive-xl">
                             <table class="table table-striped table-hover">
                               <thead>
@@ -182,6 +186,7 @@
                                 <button type="submit" class="btn btn-info">Load To Chart</button>
                             </form>-->
                             <!-- TradingView Widget BEGIN -->
+                            <h5 class="card-header text-center">{{choice1}} News</h5>
                             <div class="tradingview-widget-container">
                               <div class="tradingview-widget-container__widget"></div>
                               <div class="tradingview-widget-copyright">{{choice1}} News</div>
@@ -192,11 +197,12 @@
                               "colorTheme": "light",
                               "isTransparent": true,
                               "displayMode": "regular",
-                              "height": 550,
+                              "height": 310,
                               "locale": "en"
                             }
                               </script>
                             </div>
+                          </div>
                             <!-- TradingView Widget END -->
                     </div>
                     
