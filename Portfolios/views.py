@@ -137,6 +137,15 @@ def portfolioView(request):
                         pass
                         error_message = "Insert correct symbol!"
 
+                        for stock in stock_list:        
+                            choice1 = stock.symbol  
+
+                        #Getting and plotting data from functions.py to render in portfolio.html
+                        candlestick1 = candles1(choice1)
+
+                        #Get current price and percent change from database for chart with user symbol choice 
+                        chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
+
                         context = {
                             'stock_list': stock_list,
                             'today_date': today_date,
@@ -149,6 +158,15 @@ def portfolioView(request):
 
                 else:  # if symbol is already in your portfolio
                     stock_exists_message = "Stock is already in your portfolio!"
+
+                    for stock in stock_list:        
+                        choice1 = stock.symbol  
+
+                    #Getting and plotting data from functions.py to render in portfolio.html
+                    candlestick1 = candles1(choice1)
+
+                    #Get current price and percent change from database for chart with user symbol choice 
+                    chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
 
                     context = {
                         'stock_list': stock_list,
@@ -266,7 +284,7 @@ def portfolioView(request):
 
 
     
-
+@login_required
 def watchlistView(request):
 
     user_id = request.user.id
@@ -367,6 +385,15 @@ def watchlistView(request):
 
                 else:  # if symbol is already in your watchlist
                     stock_exists_message = "Stock is already in watchlist!"
+
+                    for stock in watch_list:        
+                        choice1 = stock.symbol  
+
+                    #Getting and plotting data from functions.py to render in portfolio.html
+                    candlestick3 = candles3(choice1)
+
+                    #Get current price and percent change from database for chart with user symbol choice 
+                    chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
 
                     context = {
                         'watch_list': watch_list,
@@ -473,20 +500,23 @@ def watchlistView(request):
 
         return render(request, 'watchlist.html', context)
 
-
+@login_required
 def notificationsView(request):
 
     return render(request, 'notifications.html')
 
+@login_required
 def accountView(request):
 
     return render(request, 'account.html')
 
+@login_required
 def settingsView(request):
 
 
     return render(request, 'settings.html')
 
+@login_required
 def helpView(request):
 
     return render(request, 'help.html')       

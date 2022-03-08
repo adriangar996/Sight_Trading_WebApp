@@ -1,4 +1,3 @@
-'''models.py to create predictions tble'''
 from django.db import models
 
 

@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class PortfolioUser(models.Model):
   '''Add Portfolio data to User'''
   first_name = models.CharField(default='', max_length=1)
@@ -59,3 +60,6 @@ class Watchlist(models.Model):
       result.delete()
     else:
       result.save()
+
+
+
