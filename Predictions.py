@@ -38,7 +38,7 @@ companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG']
 while True:
 	#print("Has started")
 	time = datetime.datetime.today()
-	schedule = datetime.time(20,0,0)
+	schedule = datetime.time(19,0,0)
 	if time.hour == schedule.hour and has_Run==False: #change second time hour to schedule hour
 		last = datetime.date.today() 
 		td = datetime.timedelta(100)
@@ -62,7 +62,7 @@ while True:
 					predINV.append(scaler.inverse_transform(pred))
 					predINV[i] = predINV[i].round(decimals = 2) 
 					print(f'Day {days[i]}: {predINV[i]}')
-				predINV = predINV.reshape(-1)
+				predINV = np.reshape(predINV,(-1))
 				predINV = predINV.tolist()
 				pred_to_db = Predictions(symbol=symbols, day1=predINV[0],  day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
 				pred_to_db.save()
