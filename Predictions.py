@@ -9,7 +9,9 @@ import pandas as pd # Used to create a dataframe that holds all data
 #from keras.layers import Dense, LSTM # Importation of Neural Network layers and LSTM layers
 from keras.models import load_model # Used to load existing models
 import datetime
-import joblib 
+import joblib
+
+#In order to access Django app DB with standalone python script this section must be included 
 import sys, os, django
 sys.path.append("/Users/17874/Projects\Capstone_Sight") #here store is root folder(means parent).
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Sight.settings")
