@@ -62,14 +62,10 @@ while True:
 					predINV.append(scaler.inverse_transform(pred))
 					predINV[i] = predINV[i].round(decimals = 2) 
 					print(f'Day {days[i]}: {predINV[i]}')
-
-					pred_to_db = Predictions(symbol=symbols, 
-											 day1=predINV[0], 
-											 day5=predINV[1], 
-											 day14=predINV[2], 
-											 day30=predINV[3], 
-											 day90=predINV[4])
-					pred_to_db.save()
+				predINV = predINV.reshape(-1)
+				predINV = predINV.tolist()
+				pred_to_db = Predictions(symbol=symbols, day1=predINV[0],  day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
+				pred_to_db.save()
 
 					# stocks = Predictions.objects.all()
 
