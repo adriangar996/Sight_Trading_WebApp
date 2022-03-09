@@ -11,6 +11,8 @@ from .forms import AddStockForm, AddWatchlistForm
 from .functions import *
 import logging
 import requests
+#import Predictions
+#from Dashboards.models import Predictions
 
 
 # CREATING LOGGER
@@ -55,6 +57,9 @@ def portfolioView(request):
 
     #Get current price and percent change from database for chart with user symbol choice 
     chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
+
+    #pred_to_db = Predictions(symbol=Predictions.symbols, day1=Predictions.predINV[0], day5=Predictions.predINV[1], day14=Predictions.predINV[2], day30=Predictions.predINV[3], day90=Predictions.predINV[4])
+    #pred_to_db.save()
 
     #Get stock to be added to portfolio from user
     if 'add_stock' in request.POST:
@@ -275,12 +280,6 @@ def portfolioView(request):
         logger.info('Refreshing stock list')
 
         return render(request, 'portfolio.html', context)
-
-
-
-
-
-
 
 
     

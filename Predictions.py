@@ -10,7 +10,11 @@ import pandas as pd # Used to create a dataframe that holds all data
 from keras.models import load_model # Used to load existing models
 import datetime
 import joblib 
-#from Dashboards.models import Predictions
+import sys, os, django
+sys.path.append("/Users/17874/Projects\Capstone_Sight") #here store is root folder(means parent).
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Sight.settings")
+django.setup()
+from Dashboards.models import Predictions
 
 
 def models_loader(folder, name, days = [1, 5, 30]):
@@ -32,7 +36,7 @@ companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG']
 while True:
 	#print("Has started")
 	time = datetime.datetime.today()
-	schedule = datetime.time(21,0,0)
+	schedule = datetime.time(20,0,0)
 	if time.hour == schedule.hour and has_Run==False: #change second time hour to schedule hour
 		last = datetime.date.today() 
 		td = datetime.timedelta(100)
@@ -57,8 +61,8 @@ while True:
 					predINV[i] = predINV[i].round(decimals = 2) 
 					print(f'Day {days[i]}: {predINV[i]}')
 
-					# pred_to_db = Predictions(symbol=symbols, day1=predINV[0], day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
-					# pred_to_db.save()
+					pred_to_db = Predictions(symbol=symbols, day1=predINV[0], day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
+					pred_to_db.save()
 
 					# stocks = Predictions.objects.all()
 
@@ -79,4 +83,3 @@ while True:
 	
 	elif has_Run==True and time.hour != schedule.hour:
 		has_Run=False
-
