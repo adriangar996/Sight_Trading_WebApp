@@ -38,7 +38,7 @@ companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG', 'GOOG', 'AMZN', 'FB', 'RCL', 'N
 while True:
 	#print("Has started")
 	time = datetime.datetime.today()
-	schedule = datetime.time(20,0,0)
+	schedule = datetime.time(21,0,0)
 	if time.hour == schedule.hour and has_Run==False: #change second time hour to schedule hour
 		last = datetime.date.today() 
 		td = datetime.timedelta(100)
