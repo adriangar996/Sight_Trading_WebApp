@@ -227,7 +227,11 @@
                                             {% else %}
                                                 <td class="align-middle text-danger">-{{stock.change}}%</td>
                                             {% endif %}
-                                            <td class="align-middle text-info">Wait</td>
+                                            {% if stock.signal == 'WAIT' %}
+                                              <td class="align-middle text-info">{{stock.signal}}</td>
+                                            {% else %}
+                                              <td class="align-middle text-success">{{stock.signal}}</td>
+                                            {% endif %}
                                          </tr>
                                          {% endfor %}
                                             

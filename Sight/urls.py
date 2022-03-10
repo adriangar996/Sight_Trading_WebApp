@@ -22,7 +22,4 @@ urlpatterns = [
     path('', include('Dashboards.urls')),
     path('', include('Portfolios.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-
-    #Django Dash Plotly
-    path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]

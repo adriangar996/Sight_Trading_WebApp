@@ -3,7 +3,6 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Portfolios.models import PortfolioUser
-from yahoo_finance import Share
 import requests
 import json
 

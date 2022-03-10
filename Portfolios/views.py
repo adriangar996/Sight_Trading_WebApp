@@ -104,7 +104,8 @@ def portfolioView(request):
                                             change=new_stock_change,
                                             shares_owned=shares_owned,
                                             buying_price=buying_price,
-                                            gain_loss= 0
+                                            gain_loss= 0,
+                                            signal= 0
                                             )
                             stock_to_db.save()
 
@@ -116,7 +117,7 @@ def portfolioView(request):
                             price = stock.price
                             gain_loss = (stocks * price) - (stocks * bprice)
                             stock.gain_loss = gain_loss
-                            stock.save()
+
 
                             for stock in stock_list:        
                                 choice1 = stock.symbol  
@@ -265,12 +266,19 @@ def portfolioView(request):
                 stock.price = decimal.Decimal(i['regularMarketPrice'])
                 stock.change = i['regularMarketChangePercent']
 
-
             gain_loss = (stock.shares_owned * stock.price) - (stock.shares_owned * stock.buying_price)
             stock.gain_loss = gain_loss
 
+            pred = Predictions.objects.get(symbol=stock.symbol)
+            pred_day90 = pred.day90
+            if pred_day90 > stock.buying_price:
+                signal = 'HOLD'
+            elif pred_day90 < stock.buying_price:
+                signal = 'SELL'
+            stock.signal = signal
+
             # update current lines
-            stock.save(update_fields=['price', 'change', 'gain_loss'])  # do not create new object in db,
+            stock.save(update_fields=['price', 'change', 'gain_loss', 'signal'])  # do not create new object in db,
 
             if request.method == 'POST':
                 choice1 = request.POST.get('stock_selected1', '')
@@ -503,8 +511,16 @@ def watchlistView(request):
                 stock.price = decimal.Decimal(i['regularMarketPrice'])
                 stock.change = i['regularMarketChangePercent']
 
+                pred = Predictions.objects.get(symbol=stock.symbol)
+                pred_day90 = pred.day90
+                if pred_day90 > stock.price:
+                    signal = 'BUY'
+                elif pred_day90 <= stock.price:
+                    signal = 'WAIT'
+                stock.signal = signal
 
-                stock.save(update_fields=['price', 'change'])  # do not create new object in db,
+
+                stock.save(update_fields=['price', 'change', 'signal'])  # do not create new object in db,
                 # update current lines
 
                 if request.method == 'POST':

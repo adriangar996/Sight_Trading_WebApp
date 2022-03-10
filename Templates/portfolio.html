@@ -231,8 +231,11 @@
                                             {% else %}
                                                 <td class="align-middle text-danger">{{stock.gain_loss}}</td>
                                             {% endif %}
-                                            <td class="align-middle text-info">Hold</td>
-
+                                            {% if stock.signal == 'HOLD'%}
+                                              <td class="align-middle text-info">{{stock.signal}}</td>
+                                            {% else %}
+                                              <td class="align-middle text-danger">{{stock.signal}}</td>
+                                            {% endif %}
                                           </tr>
                                           {% endfor %}
                                             
