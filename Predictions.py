@@ -32,13 +32,13 @@ models = models_loader('ML Model','Model', days) #lodear los modelos
 #Buscar el dia y calcular 75 dias en el pasado
 
 has_Run = False
-companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG']
+companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG', 'GOOG', 'AMZN', 'FB', 'RCL', 'NIO', 'NFLX']
 #print(f'Start: {start}, Last: {last}')
 
 while True:
 	#print("Has started")
 	time = datetime.datetime.today()
-	schedule = datetime.time(19,0,0)
+	schedule = datetime.time(20,0,0)
 	if time.hour == schedule.hour and has_Run==False: #change second time hour to schedule hour
 		last = datetime.date.today() 
 		td = datetime.timedelta(100)
@@ -64,21 +64,21 @@ while True:
 					print(f'Day {days[i]}: {predINV[i]}')
 				predINV = np.reshape(predINV,(-1))
 				predINV = predINV.tolist()
-				pred_to_db = Predictions(symbol=symbols, day1=predINV[0],  day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
-				pred_to_db.save()
+				#pred_to_db = Predictions(symbol=symbols, day1=predINV[0],  day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
+				#pred_to_db.save()
 
-					# stocks = Predictions.objects.all()
+				stocks = Predictions.objects.all()
 
-					# for stock in stocks:
+				for ticker in stocks:
 						
-					# 	stock.symbol = symbols
-					# 	stock.day1 = predINV[0]
-					# 	stock.day5 = predINV[1]
-					# 	stock.day14 = predINV[2]
-					# 	stock.day30 = predINV[3]
-					# 	stock.day90 = predINV[4]
+					ticker.symbol = symbols
+					ticker.day1 = predINV[0]
+					ticker.day5 = predINV[1]
+					ticker.day14 = predINV[2]
+					ticker.day30 = predINV[3]
+					ticker.day90 = predINV[4]
 
-					# stock.save(update_fields=['symbol', 'day1', 'day5', 'day14', 'day30', 'day90'])
+				ticker.save(update_fields=['symbol', 'day1', 'day5', 'day14', 'day30', 'day90'])
 
 			
 			del data 
