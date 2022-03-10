@@ -32,7 +32,7 @@ models = models_loader('ML Model','Model', days) #lodear los modelos
 #Buscar el dia y calcular 75 dias en el pasado
 
 has_Run = False
-companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG', 'GOOG', 'AMZN', 'FB', 'RCL', 'NIO', 'NFLX']
+companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG', 'GOOG', 'AMZN', 'FB', 'RCL', 'NIO', 'NFLX', 'SNAP']
 #print(f'Start: {start}, Last: {last}')
 
 while True:
@@ -66,9 +66,11 @@ while True:
 				predINV = predINV.tolist()
 				#pred_to_db = Predictions(symbol=symbols, day1=predINV[0],  day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
 				#pred_to_db.save()
-
+				
+				#Get all stocks from predictions table in DB
 				stocks = Predictions.objects.all()
 
+				#Access all stocks in stocks variable and assign them the new predictions
 				for ticker in stocks:
 						
 					ticker.symbol = symbols
@@ -78,6 +80,7 @@ while True:
 					ticker.day30 = predINV[3]
 					ticker.day90 = predINV[4]
 
+				#Save new predictions to DB and add a new stock if any
 				ticker.save(update_fields=['symbol', 'day1', 'day5', 'day14', 'day30', 'day90'])
 
 			
