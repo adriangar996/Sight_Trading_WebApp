@@ -64,6 +64,8 @@ while True:
 					print(f'Day {days[i]}: {predINV[i]}')
 				predINV = np.reshape(predINV,(-1))
 				predINV = predINV.tolist()
+
+				#Code to run if Predictions table in DB is empty
 				#pred_to_db = Predictions(symbol=symbols, day1=predINV[0],  day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
 				#pred_to_db.save()
 				
