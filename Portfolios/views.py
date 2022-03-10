@@ -11,8 +11,7 @@ from .forms import AddStockForm, AddWatchlistForm
 from .functions import *
 import logging
 import requests
-#import Predictions
-#from Dashboards.models import Predictions
+from Dashboards.models import Predictions
 
 
 # CREATING LOGGER
@@ -58,8 +57,8 @@ def portfolioView(request):
     #Get current price and percent change from database for chart with user symbol choice 
     chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
 
-    #pred_to_db = Predictions(symbol=Predictions.symbols, day1=Predictions.predINV[0], day5=Predictions.predINV[1], day14=Predictions.predINV[2], day30=Predictions.predINV[3], day90=Predictions.predINV[4])
-    #pred_to_db.save()
+    #Get predictions from DB
+    pred_list = Predictions.objects.filter(symbol=choice1)
 
     #Get stock to be added to portfolio from user
     if 'add_stock' in request.POST:
@@ -128,6 +127,8 @@ def portfolioView(request):
                             #Get current price and percent change from database for chart with user symbol choice 
                             chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
 
+                            pred_list = Predictions.objects.filter(symbol=choice1)
+
                             context = {
                                 'stock_list': stock_list,
                                 'today_date': today_date,
@@ -135,6 +136,7 @@ def portfolioView(request):
                                 'choice1' : choice1,
                                 'candlestick1' : candlestick1,
                                 'chart_values1' : chart_values1,
+                                'pred_list' : pred_list
                             }
                             return render(request, 'portfolio.html', context)
 
@@ -151,6 +153,8 @@ def portfolioView(request):
                         #Get current price and percent change from database for chart with user symbol choice 
                         chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
 
+                        pred_list = Predictions.objects.filter(symbol=choice1)
+
                         context = {
                             'stock_list': stock_list,
                             'today_date': today_date,
@@ -158,6 +162,7 @@ def portfolioView(request):
                             'choice1' : choice1,
                             'candlestick1' : candlestick1,
                             'chart_values1' : chart_values1,
+                            'pred_list' : pred_list
                         }
                         return render(request, 'portfolio.html', context)
 
@@ -173,6 +178,8 @@ def portfolioView(request):
                     #Get current price and percent change from database for chart with user symbol choice 
                     chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
 
+                    pred_list = Predictions.objects.filter(symbol=choice1)
+
                     context = {
                         'stock_list': stock_list,
                         'today_date': today_date,
@@ -180,6 +187,7 @@ def portfolioView(request):
                         'choice1' : choice1,
                         'candlestick1' : candlestick1,
                         'chart_values1' : chart_values1,
+                        'pred_list' : pred_list
                     }
                     return render(request, 'portfolio.html', context)
 
@@ -193,6 +201,7 @@ def portfolioView(request):
                     'choice1' : choice1,
                     'candlestick1' : candlestick1,
                     'chart_values1' : chart_values1,
+                    'pred_list' : pred_list
                 }
                 return render(request, 'portfolio.html', context)
 
@@ -218,6 +227,8 @@ def portfolioView(request):
             #Get current price and percent change from database for chart with user symbol choice 
             chart_values1 = StockPortfolio.objects.filter(symbol=choice1)
 
+            pred_list = Predictions.objects.filter(symbol=choice1)
+
             context = {
                 'stock_list': stock_list,
                 'today_date': today_date,
@@ -225,6 +236,7 @@ def portfolioView(request):
                 'choice1' : choice1,
                 'candlestick1' : candlestick1,
                 'chart_values1' : chart_values1,
+                'pred_list' : pred_list
             }
             return render(request, 'portfolio.html', context)
 
@@ -268,6 +280,8 @@ def portfolioView(request):
             candlestick1 = candles1(choice1)
 
             chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
+
+            pred_list = Predictions.objects.filter(symbol=choice1)
             
         context = {
             'stock_list': stock_list,
@@ -275,6 +289,7 @@ def portfolioView(request):
             'choice1' : choice1,
             'candlestick1' : candlestick1,
             'chart_values1' : chart_values1,
+            'pred_list' : pred_list
         }
 
         logger.info('Refreshing stock list')
@@ -304,6 +319,9 @@ def watchlistView(request):
 
     #Get current price and percent change from database for chart with user symbol choice 
     chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
+
+    #Get predictions from DB
+    pred_list = Predictions.objects.filter(symbol=choice1)
     
     if 'add_stock' in request.POST:
 
@@ -358,6 +376,8 @@ def watchlistView(request):
                             #Get current price and percent change from database for chart with user symbol choice 
                             chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
 
+                            pred_list = Predictions.objects.filter(symbol=choice1)
+
                             context = {
                                 'watch_list': watch_list,
                                 'today_date': today_date,
@@ -365,6 +385,7 @@ def watchlistView(request):
                                 'choice1' : choice1,
                                 'candlestick3' : candlestick3,
                                 'chart_values3' : chart_values3,
+                                'pred_list' : pred_list
                             }
                             return render(request, 'watchlist.html', context)
 
@@ -379,6 +400,7 @@ def watchlistView(request):
                             'choice1' : choice1,
                             'candlestick3' : candlestick3,
                             'chart_values3' : chart_values3,
+                            'pred_list' : pred_list
                         }
                         return render(request, 'watchlist.html', context)
 
@@ -394,6 +416,8 @@ def watchlistView(request):
                     #Get current price and percent change from database for chart with user symbol choice 
                     chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
 
+                    pred_list = Predictions.objects.filter(symbol=choice1)
+
                     context = {
                         'watch_list': watch_list,
                         'today_date': today_date,
@@ -401,6 +425,7 @@ def watchlistView(request):
                         'choice1' : choice1,
                         'candlestick3' : candlestick3,
                         'chart_values3' : chart_values3,
+                        'pred_list' : pred_list
                     }
                     return render(request, 'watchlist.html', context)
 
@@ -414,6 +439,7 @@ def watchlistView(request):
                     'choice1' : choice1,
                     'candlestick3' : candlestick3,
                     'chart_values3' : chart_values3,
+                    'pred_list' : pred_list
                 }
                 return render(request, 'watchlist.html', context)
 
@@ -439,6 +465,8 @@ def watchlistView(request):
             #Get current price and percent change from database for chart with user symbol choice 
             chart_values3 = Watchlist.objects.filter(symbol=choice1)
 
+            pred_list = Predictions.objects.filter(symbol=choice1)
+
             context = {
                 'watch_list': watch_list,
                 'today_date': today_date,
@@ -446,6 +474,7 @@ def watchlistView(request):
                 'choice1' : choice1,
                 'candlestick3' : candlestick3,
                 'chart_values3' : chart_values3,
+                'pred_list' : pred_list
             }
             return render(request, 'watchlist.html', context)
 
@@ -487,17 +516,21 @@ def watchlistView(request):
 
                 chart_values3 = Watchlist.objects.filter(user=user, symbol=choice1)
 
+                pred_list = Predictions.objects.filter(symbol=choice1)
+
         context = {
             'watch_list': watch_list,
             'today_date': today_date,
             'choice1' : choice1,
             'candlestick3' : candlestick3,
             'chart_values3' : chart_values3,
+            'pred_list' : pred_list
         }
 
         logger.info('Refreshing watchlist')
 
         return render(request, 'watchlist.html', context)
+        
 
 @login_required
 def notificationsView(request):

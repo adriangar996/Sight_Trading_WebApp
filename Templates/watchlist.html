@@ -132,23 +132,33 @@
                               <tbody>
                                 <tr>
                                   <th scope="row">1 Day Prediction</th>
-                                  <td class="align-middle">$</td>
+                                  {% for ticker in pred_list %}
+                                    <td class="align-middle">${{ticker.day1}}</td>
+                                  {% endfor %}
                                 </tr>
                                 <tr>
                                   <th scope="row">5 Day Prediction</th>
-                                  <td class="align-middle">$</td>
+                                  {% for ticker in pred_list %}
+                                    <td class="align-middle">${{ticker.day5}}</td>
+                                  {% endfor %}
                                 </tr>
                                 <tr>
                                   <th scope="row">14 Day Prediction</th>
-                                  <td class="align-middle">$</td>
+                                  {% for ticker in pred_list %}
+                                    <td class="align-middle">${{ticker.day14}}</td>
+                                  {% endfor %}
                                 </tr>
                                 <tr>
                                   <th scope="row">30 Day Prediction</th>
-                                  <td class="align-middle">$</td>
+                                  {% for ticker in pred_list %}
+                                    <td class="align-middle">${{ticker.day30}}</td>
+                                  {% endfor %}
                                 </tr>
                                 <tr>
                                   <th scope="row">90 Day Prediction</th>
-                                  <td class="align-middle">$</td>
+                                  {% for ticker in pred_list %}
+                                    <td class="align-middle">${{ticker.day90}}</td>
+                                  {% endfor %}
                                 </tr>
                               </tbody>
                             </table>
