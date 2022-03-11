@@ -271,12 +271,6 @@ def portfolioView(request):
             stock.gain_loss = gain_loss
 
             pred = Predictions.objects.get(symbol=stock.symbol)
-            # pred_day90 = pred.day90
-            # if pred_day90 > stock.buying_price:
-            #     signal = 'HOLD'
-            # elif pred_day90 < stock.buying_price:
-            #     signal = 'SELL'
-            # stock.signal = signal
             pred_day90 = pred.day90
             if stock.buying_price < stock.price and stock.buying_price < pred_day90:
                 signal = 'SELL OR HOLD'
