@@ -270,11 +270,21 @@ def portfolioView(request):
             stock.gain_loss = gain_loss
 
             pred = Predictions.objects.get(symbol=stock.symbol)
+            # pred_day90 = pred.day90
+            # if pred_day90 > stock.buying_price:
+            #     signal = 'HOLD'
+            # elif pred_day90 < stock.buying_price:
+            #     signal = 'SELL'
+            # stock.signal = signal
             pred_day90 = pred.day90
-            if pred_day90 > stock.buying_price:
+            if stock.buying_price < stock.price and pred_day90:
+                signal = 'SELL OR HOLD'
+            elif stock.buying_price > stock.price and stock.buying_price < pred_day90:
                 signal = 'HOLD'
-            elif pred_day90 < stock.buying_price:
+            elif stock.buying_price < stock.price and stock.buying_price > pred_day90:
                 signal = 'SELL'
+            elif stock.buying_price > stock.price and  pred_day90:
+                signal = 'HOLD'
             stock.signal = signal
 
             # update current lines
@@ -513,7 +523,7 @@ def watchlistView(request):
 
                 pred = Predictions.objects.get(symbol=stock.symbol)
                 pred_day90 = pred.day90
-                if pred_day90 > stock.price:
+                if pred_day90 > stock.price + 5:
                     signal = 'BUY'
                 elif pred_day90 <= stock.price:
                     signal = 'WAIT'

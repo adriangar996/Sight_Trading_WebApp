@@ -233,6 +233,8 @@
                                             {% endif %}
                                             {% if stock.signal == 'HOLD'%}
                                               <td class="align-middle text-info">{{stock.signal}}</td>
+                                            {% elif stock.signal == 'SELL OR HOLD' %}
+                                              <td class="align-middle text-success">{{stock.signal}}</td>
                                             {% else %}
                                               <td class="align-middle text-danger">{{stock.signal}}</td>
                                             {% endif %}
