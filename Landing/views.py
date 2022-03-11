@@ -32,7 +32,7 @@ def loginView(request):
     return render(request, 'registration/login.html')
 
 def logout_user(request):
-  '''Logouts the currently signed in user and redirects to login'''
+  '''Logouts the currently signed in user and redirects to home page'''
   logout(request)
   return render(request, 'landing.html')
 
