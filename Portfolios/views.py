@@ -117,6 +117,7 @@ def portfolioView(request):
                             price = stock.price
                             gain_loss = (stocks * price) - (stocks * bprice)
                             stock.gain_loss = gain_loss
+                            stock.save()
 
 
                             for stock in stock_list:        
@@ -277,13 +278,13 @@ def portfolioView(request):
             #     signal = 'SELL'
             # stock.signal = signal
             pred_day90 = pred.day90
-            if stock.buying_price < stock.price and pred_day90:
+            if stock.buying_price < stock.price and stock.buying_price < pred_day90:
                 signal = 'SELL OR HOLD'
             elif stock.buying_price > stock.price and stock.buying_price < pred_day90:
                 signal = 'HOLD'
             elif stock.buying_price < stock.price and stock.buying_price > pred_day90:
                 signal = 'SELL'
-            elif stock.buying_price > stock.price and  pred_day90:
+            elif stock.buying_price > stock.price and  stock.buying_price > pred_day90:
                 signal = 'HOLD'
             stock.signal = signal
 
