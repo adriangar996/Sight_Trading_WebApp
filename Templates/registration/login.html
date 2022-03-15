@@ -32,7 +32,6 @@
 
 </head>
 <body>
-{% include 'messages.html' %}
   
   <section data-bs-version="5.1" class="menu menu2 cid-sXroWQNVO7" once="menu" id="menu2-4j">
     
@@ -85,16 +84,10 @@
                         
                         
 
-                        <div class="form-wrapper" data-form-type="formoid">
-                       
+                        <div class="form-wrapper" data-form-type="formoid">                      
 <!--Formbuilder Form-->
-<!--<form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Recover_Pass"><input type="hidden" name="email" data-form-email="true" value="rAGvIXdhBPAHAh/cClEBNxG7BqF2+n5bGBgbWEoZZ1MYHwJr3TJbAwIm9S6J0hXU+ICxbPMftr6ZzG0DgUe4cSk/rZdfnshFkGRBJj+1qDjcLmK5jLEXo3hNRQvhdis9.VtuwuSSj7Y/404h+x1hcYFMggSiJLCOxdqAMBQksbr2+Hr7AdOofSuW74MBTzZlSad8LkXJJPuiREiFdAxL2WpwvqHBXV8kqO2f2rAO27KghuIj4Hsoijkh5O2VAuVhL">-->
 <form role="form" method="POST">
 {% csrf_token %}
-<!--<div class="">
-<div hidden="hidden" data-form-alert="" class="alert alert-success col-12">An email with recovery instructions for your account has been sent.</div>
-<div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12"> </div>
-</div>-->
 <div class="dragArea row">
 <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="email_password_reset">
 <label for="email_password_reset" class="form-control-label mbr-fonts-style display-7">Email</label>
@@ -114,7 +107,7 @@
         </div>
     </div>
 </div>
-
+{% include 'messages.html' %}
 <section data-bs-version="5.1" class="form9 cid-sXrp5gmF7Z" id="form9-4o">
     
     
