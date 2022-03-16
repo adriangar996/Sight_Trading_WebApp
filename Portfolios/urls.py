@@ -8,7 +8,6 @@ urlpatterns = [
     path('portfolio/', views.portfolioView, name="portfolio"),
     path('watchlist/', views.watchlistView, name="watchlist"),
     path('notifications/', views.notificationsView, name="notifications"),
-    path('account/', views.accountView, name="account"),
     path('settings/', views.settingsView, name="settings"),
     path('help/', views.helpView, name="help"),
 

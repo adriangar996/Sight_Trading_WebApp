@@ -53,7 +53,7 @@
                 </div>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item dropdown"><a class="nav-link link text-black text-primary dropdown-toggle display-4" href="../landing#testimonials3-4h" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><span class="mdi-action-dashboard mbr-iconfont mbr-iconfont-btn"></span>Dashboard</a><div class="dropdown-menu" aria-labelledby="dropdown-undefined"><a class="text-black text-primary dropdown-item show display-4" href="../dashboardindex" aria-expanded="false"><span class="mdi-editor-insert-chart mbr-iconfont mbr-iconfont-btn"></span>Index</a><a class="text-black text-primary dropdown-item show display-4" href="../portfolio"><span class="mdi-action-trending-up mbr-iconfont mbr-iconfont-btn"></span>Portfolio</a><a class="text-black text-primary dropdown-item show display-4" href="../watchlist"><span class="mdi-action-search mbr-iconfont mbr-iconfont-btn"></span>Watch-List</a></div></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="../notifications"><span class="mdi-social-notifications-on mbr-iconfont mbr-iconfont-btn"></span>Notifications</a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="../account"><span class="mdi-action-account-circle mbr-iconfont mbr-iconfont-btn"></span>Account</a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="../settings"><span class="mdi-action-settings mbr-iconfont mbr-iconfont-btn"></span>Settings</a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="../help"><span class="mdi-action-help mbr-iconfont mbr-iconfont-btn"></span>Help</a></li></ul>
+                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item dropdown"><a class="nav-link link text-black text-primary dropdown-toggle display-4" href="../landing#testimonials3-4h" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><span class="mdi-action-dashboard mbr-iconfont mbr-iconfont-btn"></span>Dashboard</a><div class="dropdown-menu" aria-labelledby="dropdown-undefined"><a class="text-black text-primary dropdown-item show display-4" href="../dashboardindex" aria-expanded="false"><span class="mdi-editor-insert-chart mbr-iconfont mbr-iconfont-btn"></span>Index</a><a class="text-black text-primary dropdown-item show display-4" href="../portfolio"><span class="mdi-action-trending-up mbr-iconfont mbr-iconfont-btn"></span>Portfolio</a><a class="text-black text-primary dropdown-item show display-4" href="../watchlist"><span class="mdi-action-search mbr-iconfont mbr-iconfont-btn"></span>Watch-List</a></div></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="../notifications"><span class="mdi-social-notifications-on mbr-iconfont mbr-iconfont-btn"></span>Notifications</a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="../settings"><span class="mdi-action-settings mbr-iconfont mbr-iconfont-btn"></span>Settings</a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="../help"><span class="mdi-action-help mbr-iconfont mbr-iconfont-btn"></span>Help</a></li></ul>
                 
                 <div class="navbar-buttons mbr-section-btn"><a class="btn btn-black display-4" href="../logout">Log Out</a></div>
                 
@@ -61,7 +61,7 @@
         </div>
     </nav>
 </section>
-
+{% include 'messages.html' %}
 <div id="custom-html-55"><!-- Type valid HTML here -->
 
     <section>
@@ -73,7 +73,7 @@
                     </ol>
                   </nav>
                 
-                  <h1>Settings</h1>
+                  <h1>Account Settings</h1>
                   <div class="row">
                     <div class="container">
 <div class="row justify-content-center">
@@ -81,10 +81,50 @@
         <div class="my-4">
             
             <h5 class="mb-0 mt-5">Manage Settings</h5>
-            
+             <hr class="my-4">
+            <strong class="mb-0">Account Information</strong>
+            <p>Your personal information.</p>
+            <div class="list-group mb-5 shadow">
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <strong class="mb-0">Name</strong>
+                            <p class="text-muted mb-0">{{user.first_name}} {{user.last_name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <strong class="mb-0">Email/Username</strong>
+                            <p class="text-muted mb-0">{{user}}</p>
+                        </div>
+                        <div class="col-auto">
+                            <div class="custom-control custom-switch">
+                                <a href="#" data-toggle="modal" data-bs-toggle="modal" data-target="#mbr-popup-59" data-bs-target="#mbr-popup-59"> Change Email </a>
+                                <span class="custom-control-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <strong class="mb-0">Password</strong>
+                            <p class="text-muted mb-0">************</p>
+                        </div>
+                        <div class="col-auto">
+                            <div class="custom-control custom-switch">
+                                <a href="#" data-toggle="modal" data-bs-toggle="modal" data-target="#mbr-popup-60" data-bs-target="#mbr-popup-60"> Change Password </a>
+                                <span class="custom-control-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <hr class="my-4">
             <strong class="mb-0">Notifications and Alerts</strong>
-            <p>Manage yout Notifications and Alets.</p>
+            <p>Manage your notifications and alerts.</p>
             <div class="list-group mb-5 shadow">
                 <div class="list-group-item">
                     <div class="row align-items-center">
@@ -205,6 +245,101 @@
         </div>
     </div>
 </section>
+
+<div class="modal mbr-popup cid-sYtI05IdfM fade" tabindex="-1" role="dialog" data-overlay-color="#000000" data-overlay-opacity="0.4" id="mbr-popup-59" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="container position-static margin-center-pos">
+                <div class="modal-header pb-0">
+                    <h5 class="modal-title mbr-fonts-style display-5">Change Email</h5>
+                    <button type="button" class="close d-flex" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="currentColor">
+                            <path d="M13.4 12l10.3 10.3-1.4 1.4L12 13.4 1.7 23.7.3 22.3 10.6 12 .3 1.7 1.7.3 12 10.6 22.3.3l1.4 1.4L13.4 12z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mbr-text mbr-fonts-style display-7"><strong>
+                        Enter your new email address.</strong></p>
+
+                    <div>
+                        
+                        
+
+                        <div class="form-wrapper" data-form-type="formoid">
+<!--Formbuilder Form-->
+<form  method="POST">
+<div class="">
+</div>
+<div class="dragArea row">
+<div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="New Email">
+<label for="Actual Password-mbr-popup-5g" class="form-control-label mbr-fonts-style display-7"><strong>New Email</strong></label>
+<input type="text" name="" placeholder="Enter New Email" required="required" class="form-control display-7" value="" id="">
+</div>
+<div class="col input-group-btn">
+<button type="submit" class="w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 btn btn-primary display-4">Change Email</button>
+</div>
+</div>
+</form><!--Formbuilder Form-->
+</div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal mbr-popup cid-sYtI05IdfM fade" tabindex="-1" role="dialog" data-overlay-color="#000000" data-overlay-opacity="0.4" id="mbr-popup-60" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="container position-static margin-center-pos">
+                <div class="modal-header pb-0">
+                    <h5 class="modal-title mbr-fonts-style display-5">Change Password</h5>
+                    <button type="button" class="close d-flex" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="currentColor">
+                            <path d="M13.4 12l10.3 10.3-1.4 1.4L12 13.4 1.7 23.7.3 22.3 10.6 12 .3 1.7 1.7.3 12 10.6 22.3.3l1.4 1.4L13.4 12z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mbr-text mbr-fonts-style display-7"><strong>
+                        Enter your new password.</strong></p>
+
+                    <div>
+                        
+                        
+
+                        <div class="form-wrapper" data-form-type="formoid">
+<!--Formbuilder Form-->
+<form method="POST">
+{% csrf_token %}
+<div class="">
+</div>
+<div class="dragArea row">
+<div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="Actual Password">
+<label for="Actual Password-mbr-popup-5g" class="form-control-label mbr-fonts-style display-7"><strong>New Password</strong></label>
+<input type="password" name="change_password" placeholder="Enter New Password" required="required" class="form-control display-7" value="" id="change_password">
+</div>
+<div class="col input-group-btn">
+<button type="submit" class="w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 w-100 btn btn-primary display-4">Change Password</button>
+</div>
+</div>
+</form><!--Formbuilder Form-->
+</div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

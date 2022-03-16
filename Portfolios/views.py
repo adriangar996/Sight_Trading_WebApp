@@ -11,6 +11,7 @@ from .forms import AddStockForm, AddWatchlistForm
 from .functions import *
 import logging
 import requests
+from django.contrib import messages
 from Dashboards.models import Predictions
 
 
@@ -559,15 +560,21 @@ def notificationsView(request):
     return render(request, 'notifications.html')
 
 @login_required
-def accountView(request):
-
-    return render(request, 'account.html')
-
-@login_required
 def settingsView(request):
+    user_id = request.user.id
+    users = User.objects.filter(id=user_id)[0]
 
+    #Change users password
+    u = User.objects.get(username=users.username)
+    if request.method == "POST":
+        change_password = request.POST.get('change_password', '')
+        u.set_password(change_password)
+        u.save()
 
-    return render(request, 'settings.html')
+        messages.success(request, 'Your password has been changed. Please log back in.')
+        return redirect('Landing:login')
+    else:
+        return render(request, 'settings.html') 
 
 @login_required
 def helpView(request):
