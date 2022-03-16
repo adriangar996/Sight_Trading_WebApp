@@ -563,7 +563,7 @@ def notificationsView(request):
 def settingsView(request):
     user_id = request.user.id
     users = User.objects.filter(id=user_id)[0]
-
+    
     #Change users password
     u = User.objects.get(username=users.username)
     if request.method == "POST":
@@ -573,6 +573,15 @@ def settingsView(request):
 
         messages.success(request, 'Your password has been changed. Please log back in.')
         return redirect('Landing:login')
+        
+    # #Change users email/username  
+    # if request.method == "POST":
+    #     change_email = request.POST.get('change_email', '')
+    #     u.username = change_email
+    #     u.save()
+
+    #     messages.success(request, 'Your email/username has been changed. Please log back in.')
+    #     return redirect('Landing:login')
     else:
         return render(request, 'settings.html') 
 
