@@ -573,8 +573,9 @@ def settingsView(request):
 
         messages.success(request, 'Your password has been changed. Please log back in.')
         return redirect('Landing:login')
+
         
-    # #Change users email/username  
+    #Change users email/username
     # if request.method == "POST":
     #     change_email = request.POST.get('change_email', '')
     #     u.username = change_email

@@ -11,5 +11,11 @@ class AddWatchlistForm(forms.Form):
 class SelectedStockForm(forms.Form):
     selected_stock = forms.CharField(label='selected_stock', max_length=10)
 
+# class ChangePasswordForm(forms.Form):
+#     password_change = forms.CharField(widget={'change_password':forms.PasswordInput()})
+
+class ChangeEmailForm(forms.Form):
+    email_change = forms.EmailField(label='change_email')
+
 class RemoveStockForm(forms.Form):
     remove_stock = forms.CharField(label='remove_stock')
