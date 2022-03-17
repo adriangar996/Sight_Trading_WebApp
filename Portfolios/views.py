@@ -117,6 +117,7 @@ def portfolioView(request):
                                             )
                             stock_to_db.save()
 
+                            messages.success(request, new_stock.upper() + ' succesfully added to portfolio!')
                             add_success_message = "Stock successfully added to portfolio!"
 
                             stock = StockPortfolio.objects.get( user=user, symbol=new_stock.upper())
@@ -125,6 +126,18 @@ def portfolioView(request):
                             price = stock.price
                             gain_loss = (stocks * price) - (stocks * bprice)
                             stock.gain_loss = gain_loss
+
+                            pred = Predictions.objects.get(symbol=new_stock.upper())
+                            pred_day90 = pred.day90
+                            if stock.buying_price < stock.price and stock.buying_price < pred_day90:
+                                signal = 'SELL OR HOLD'
+                            elif stock.buying_price > stock.price and stock.buying_price < pred_day90:
+                                signal = 'HOLD'
+                            elif stock.buying_price < stock.price and stock.buying_price > pred_day90:
+                                signal = 'SELL'
+                            elif stock.buying_price > stock.price and  stock.buying_price > pred_day90:
+                                signal = 'HOLD'
+                            stock.signal = signal
                             stock.save()
 
 
@@ -226,6 +239,7 @@ def portfolioView(request):
             StockPortfolio.objects.filter( user=user, symbol=symbol).delete()
             stock_list = StockPortfolio.objects.filter(user_id=user)
 
+            messages.success(request, symbol + ' succesfully deleted from portfolio!')
             delete_success_message = "Stock successfully removed from portfolio!"
 
             for stock in stock_list:
@@ -235,7 +249,7 @@ def portfolioView(request):
             candlestick1 = candles1(choice1)
 
             #Get current price and percent change from database for chart with user symbol choice 
-            chart_values1 = StockPortfolio.objects.filter(symbol=choice1)
+            chart_values1 = StockPortfolio.objects.filter(user=user, symbol=choice1)
 
             pred_list = Predictions.objects.filter(symbol=choice1)
 
@@ -386,7 +400,18 @@ def watchlistView(request):
                                             )
                             stock_to_db.save()
 
+                            messages.success(request, new_stock.upper() + ' succesfully added to watchlist!')
                             add_success_message = "Stock successfully added to watchlist!"
+
+                            stock = Watchlist.objects.get( user=user, symbol=new_stock.upper())
+                            pred = Predictions.objects.get(symbol=stock.symbol)
+                            pred_day90 = pred.day90
+                            if pred_day90 > stock.price + 5:
+                                signal = 'BUY'
+                            elif pred_day90 <= stock.price:
+                                signal = 'WAIT'
+                            stock.signal = signal
+                            stock.save()
 
                             for stock in watch_list:
                                 choice1 = stock.symbol 
@@ -475,6 +500,7 @@ def watchlistView(request):
             Watchlist.objects.filter( user=user, symbol=symbol).delete()
             watch_list = Watchlist.objects.filter(user_id=user)
 
+            messages.success(request, symbol + ' succesfully deleted from watchlist!')
             delete_success_message = "Stock successfully removed from watchlist!"
 
             for stock in watch_list:
