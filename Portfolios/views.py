@@ -1,6 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.db.models.query_utils import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
 from django.contrib.auth.models import User
 from Portfolios.models import StockPortfolio, PortfolioUser
 from Portfolios.models import Watchlist
@@ -588,6 +595,33 @@ def settingsView(request):
 
 @login_required
 def helpView(request):
+    if request.method == "POST":
+        name = request.POST.get('name', '')
+        phone = request.POST.get('phone', '')
+        user_email = request.POST.get('user_email', '')
+        ticket_reason = request.POST.get('ticket_reason', '')
+        staff_email = 'sightstockapp@outlook.com'
+        
+        
+        subject = "New Ticket has been created"
+        email_template_name = "ticket_email.txt"
+        c = {
+        "name":name,
+        "phone":phone,
+        "email":user_email,
+        "ticket_reason":ticket_reason,
+        }
+        email = render_to_string(email_template_name, c)
+        try:
+            send_mail(subject, email, user_email , [staff_email], fail_silently=False)
+        except BadHeaderError:
+
+            return HttpResponse('Invalid header found.')
+            
+        messages.success(request, 'Ticket has been created. One of our staff will be in contact with you shortly.')
+        return redirect ("help")
+			
+	
 
     return render(request, 'help.html')       
 

@@ -64,7 +64,7 @@
         </div>
     </nav>
 </section>
-
+{% include 'messages.html' %}
 <div id="custom-html-57"><!-- Type valid HTML here -->
 
     <section>
@@ -92,8 +92,11 @@
                 <div class="col-12 col-md-4">
                     <div class="section-head align-center mb-4">
                         
-                        <h4 class="mbr-section-subtitle mt-2 mb-0 mbr-fonts-style display-4">
-                            FAQ</h4>
+                        <!--<h4 class="mbr-section-subtitle mt-2 mb-0 mbr-fonts-style display-4"><strong>
+                            FAQ</strong></h4>-->
+                        <h3 class="mbr-section-title mbr-fonts-style mb-0 display-5">
+                    <strong>FAQ</strong>
+                </h3>
                     </div>
                     
                     <div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
@@ -192,49 +195,39 @@
     
     <div class="container">
         <div class="wrapper">
-            <div class="mbr-section-head">
+            <div class="mbr-section-head align-center">
                 <h3 class="mbr-section-title mbr-fonts-style mb-0 display-5">
                     <strong>Still have questions?</strong>
                 </h3>
                 <h4 class="mbr-section-subtitle mbr-fonts-style mb-0 mt-2 display-4">
-                    Fill out the form below, we will call you back and answer them.
+                    Fill out the form below to create a ticket.
                 </h4>
             </div>
             <div class="row justify-content-center">
                 <div class="col-l2 col-md-5 mbr-form mt-5" data-form-type="formoid">
 
-                    <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="A0DLQoORlzB8ytcSrmpTUuwDcAlAQ28sHMjHsfsz19X/o8RD1g1vMQ7LRorm3e9X3i5+P1NiOp1x60r6WDZ96F5SAWoGAGBesifKAhiHjc5dC5Yr3Uh9XGqNYJBcRWSM.ZVtMfKOgdOU+3i0Cb+6+qX7cIpoc0AJRUuZKvk/INlshHQ2NTMibDPpzYxCHmrHLSH64Bj1giJYPQGzo+LOQWMPjyXVfeU/l/JOdZE5cpdI2q2PZYT01DMEsExNLkmWe">
-                        <div class="row">
-                            <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling
-                                out the form!</div>
-                            <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">Oops...! some
-                                problem!</div>
-                        </div>
+                    <form method="POST">
+                    {% csrf_token %}
                         <div class="col-12">
                             <div class="dragArea row">
                                 <div class="col-12 form-group mb-3" data-for="name">
-                                    <input type="text" name="name" placeholder="Name*" data-form-field="name" class="form-control" value="" id="name-form1-37">
+                                    <input type="text" name="name" placeholder="Full Name" class="form-control" value="" id="name">
                                 </div>
                                 <div class="col-12 form-group mb-3" data-for="phone">
-                                    <input type="tel" name="phone" placeholder="Phone*" data-form-field="phone" class="form-control" value="" id="phone-form1-37">
+                                    <input type="tel" name="phone" placeholder="Phone Number" class="form-control" value="" id="phone">
                                 </div>
-                                <div class="col-12 form-group mb-4" data-for="url">
-                                    <input type="email" name="email" placeholder="E-mail*" data-form-field="email" class="form-control" value="" id="email-form1-37">
+                                <div class="col-12 form-group mb-3" data-for="user_email">
+                                    <input type="email" name="user_email" placeholder="Email Address" class="form-control" value="" id="user_email">
                                 </div>
-                                <div class="col-md col-12 mbr-section-btn text-center text-uppercase"><a class="btn btn-primary m-0 ps-4 pe-4 display-4" href="/">Create ticket</a></div>
+                                <div class="col-12 form-group mb-4" data-for="ticket_reason">
+                                    <input type="text" name="ticket_reason" placeholder="Ticket Reason" class="form-control" value="" id="ticket_reason">
+                                </div>
+                                <div class="col-md col-12 mbr-section-btn text-center text-uppercase"><button type="submit" class="btn btn-primary m-0 ps-4 pe-4 display-4" >Create ticket</button></div>
                             </div>
                         </div>
 
                     <span class="gdpr-block">
-<label>
-<span class="textGDPR display-7" style="color: #a7a7a7"><input type="checkbox" name="gdpr" id="gdpr-form1-37" required="">By continuing you agree to our <a style="color: #149dcc; text-decoration: none;" href="terms.html">Terms of Service</a> and <a style="color: #149dcc; text-decoration: none;" href="policy.html">Privacy Policy</a>.</span>
-</label>
-</span></form>
-                </div>
-                <div class="col-12 col-md-7">
-                    <div class="image-wrapper">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" loading="lazy" class="lazyload" data-src="{% static 'assets/images/sight-logo-oficial-263x281.png' %}">
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
