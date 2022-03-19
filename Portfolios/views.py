@@ -11,7 +11,6 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.models import User
 from Portfolios.models import StockPortfolio, PortfolioUser
 from Portfolios.models import Watchlist
-import yfinance
 import time
 import decimal
 from .forms import AddStockForm, AddWatchlistForm
