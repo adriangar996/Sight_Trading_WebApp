@@ -589,7 +589,61 @@ def watchlistView(request):
 @login_required
 def notificationsView(request):
 
-    return render(request, 'notifications.html')
+    user_id = request.user.id
+    user = PortfolioUser.objects.filter(user=user_id)[0]
+
+    today_date = time.strftime("%m.%d.%Y")
+
+    stock_list = StockPortfolio.objects.filter(user_id=user)
+
+    stocks = StockPortfolio.objects.filter(user_id=user)  # This returns queryset
+
+    for stock in stocks:
+
+        url = "https://yfapi.net/v6/finance/quote"
+
+        querystring = {"symbols":stock.symbol}
+
+        headers = {
+            'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"  
+        }
+
+        r = requests.request("GET", url, headers=headers, params=querystring)
+        data = r.json()
+
+        response = data['quoteResponse']
+        result = response['result']
+
+        for i in result:
+
+            stock.price = decimal.Decimal(i['regularMarketPrice'])
+            stock.change = i['regularMarketChangePercent']
+
+        gain_loss = (stock.shares_owned * stock.price) - (stock.shares_owned * stock.buying_price)
+        stock.gain_loss = gain_loss
+
+        pred = Predictions.objects.get(symbol=stock.symbol)
+        pred_day90 = pred.day90
+        if stock.buying_price < stock.price and stock.buying_price < pred_day90:
+            signal = 'SELL OR HOLD'
+        elif stock.buying_price > stock.price and stock.buying_price < pred_day90:
+            signal = 'HOLD'
+        elif stock.buying_price < stock.price and stock.buying_price > pred_day90:
+            signal = 'SELL'
+        elif stock.buying_price > stock.price and  stock.buying_price > pred_day90:
+            signal = 'HOLD'
+        stock.signal = signal
+
+        # update current lines
+        stock.save(update_fields=['price', 'change', 'gain_loss', 'signal'])
+
+
+        context={
+            'stock_list' : stock_list,
+            'today_date' : today_date,
+        }
+
+        return render(request, 'notifications.html', context)
 
 @login_required
 def settingsView(request):

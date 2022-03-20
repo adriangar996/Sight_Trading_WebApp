@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/fb30b663-b5df-41ee-b203-8c7aca7be07b/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/sight-stock-app",
+    "appService.deploySubpath": "."
+}

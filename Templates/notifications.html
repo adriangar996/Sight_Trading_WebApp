@@ -84,22 +84,34 @@
                                     <table class="table table-striped table-hover">
                                         <thead>
                                           <tr>
-                                            <th scope="col">Stock</th>
-                                            <th scope="col">Current Value</th>
-                                            <th scope="col">Gain/Loss</th>
-                                            <th scope="col">Signal</th>
+                                            <th scope="col">Today ({{today_date}})</th>
+                                            <th scope="col">Recommended Action</th>
+                                            <!--<th scope="col">Gain/Loss</th>
+                                            <th scope="col">Signal</th>-->
                                           </tr>
                                         </thead>
                                         <tbody>
+                                        {% for stock in stock_list %}
                                           <tr>
+                                            {% if stock.change > 0 %}
+                                                <th scope="row">{{stock.symbol}} is up today by {{stock.change}}% to ${{stock.price}}.</th>
+                                            {% else %}
+                                                <th scope="row">{{stock.symbol}} is down today by {{stock.change}}% to ${{stock.price}}.</th>
+                                            {% endif %}
                                         
-                                            <th scope="row">Stock 1(STK1))</th>
-                                            <td>$34.09</td>
-                                            <td>+0.5%</td>
+                                            {% if stock.signal == 'HOLD'%}
+                                              <td class="align-middle text-info">{{stock.signal}}</td>
+                                            {% elif stock.signal == 'SELL OR HOLD' %}
+                                              <td class="align-middle text-success">{{stock.signal}}</td>
+                                            {% else %}
+                                              <td class="align-middle text-danger">{{stock.signal}}</td>
+                                            {% endif %}
+                                            <!--<td>+0.5%</td>
                                             <td>Hold</td>
-                                         </tr>
+                                         </tr>-->
+                                        {% endfor %}
                                             
-                                            <tr>
+                                            <!--<tr>
                                             
                                             <th scope="row">Stock 2(STK2)</th>
                                             <td>$59.95</td>
@@ -112,7 +124,7 @@
                                             <td>$20.30</td>
                                             <td>+0.4%</td>
                                             <td>Sell</td>
-                                         </tr>
+                                         </tr>-->
                                             
                                         </tbody>
                                       </table>
@@ -123,6 +135,7 @@
     </section></div>
 
 <section data-bs-version="5.1" class="footer3 cid-sLQ68NRwAv mbr-reveal" once="footers" id="footer3-2e">
+
 
     
 
