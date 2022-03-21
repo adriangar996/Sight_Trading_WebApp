@@ -87,7 +87,7 @@ def signupView(request):
     return render(request, 'registration/signup.html')
 
 #Function to reset password set to send email to terminal for development purposes
-#For deployment, and SMTP client will be set
+#For deployment, an SMTP client will be set
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
