@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-9kwujr&k898n(s-lc9v%6pw%syg%4k#u*6$2k(-nh)qf=b6c4g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sightstockapp.azurewebsites.net']
-#ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['sightstockapp.azurewebsites.net']
+ALLOWED_HOSTS = []
 
 
 MESSAGE_TAGS = {
@@ -87,7 +87,17 @@ TEMPLATES = [
     },
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+#SENDGRID_API_KEY = os.environ.get('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')
+SENDGRID_API_KEY ='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'
+
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 WSGI_APPLICATION = 'Sight.wsgi.application'
 
@@ -138,8 +148,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+#STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS =[os.path.join(BASE_DIR, 'static')]
 

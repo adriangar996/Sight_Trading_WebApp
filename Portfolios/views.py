@@ -679,7 +679,7 @@ def helpView(request):
         phone = request.POST.get('phone', '')
         user_email = request.POST.get('user_email', '')
         ticket_reason = request.POST.get('ticket_reason', '')
-        staff_email = 'sightstockapp@outlook.com'
+        staff_email = 'sightapptickets@outlook.com'
         
         
         subject = "New Ticket has been created"
@@ -692,7 +692,7 @@ def helpView(request):
         }
         email = render_to_string(email_template_name, c)
         try:
-            send_mail(subject, email, user_email , [staff_email], fail_silently=False)
+            send_mail(subject, email, 'sightstockapp@outlook.com' , [staff_email], fail_silently=False)
         except BadHeaderError:
 
             return HttpResponse('Invalid header found.')
