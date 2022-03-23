@@ -1,25 +1,30 @@
+import datetime
+import logging
 import decimal
 import yfinance as yf
-#import math # For estimation
 import numpy as np # Processing data as arrays
 import pandas as pd # Used to create a dataframe that holds all data
-#from sklearn.preprocessing import MinMaxScaler # Used to scale data
-#import tensorflow as tf # Importation of library used for model creation
-#from tensorflow import keras # Importation of backend of tensorflow
-#from keras.models import Sequential # Importation of a sequentional model form
-#from keras.layers import Dense, LSTM # Importation of Neural Network layers and LSTM layers
 from keras.models import load_model # Used to load existing models
 import datetime
 import joblib
-
-#In order to access Django app DB with standalone python script this section must be included 
 import sys, os, django
-#sys.path.append("/Users/17874/Projects\Capstone_Sight") #here store is root folder(means parent).
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Sight.settings")
 django.setup()
 from Dashboards.models import Predictions
 
+import azure.functions as func
 
+
+def main(mytimer: func.TimerRequest) -> None:
+    utc_timestamp = datetime.datetime.utcnow().replace(
+        tzinfo=datetime.timezone.utc).isoformat()
+
+    if mytimer.past_due:
+        logging.info('The timer is past due!')
+
+    logging.info('Python timer trigger function ran at %s', utc_timestamp)
+
+#Predictions Script to run every day at 5pm.
 def models_loader(folder, name, days = [1, 5, 30]):
     model = []
     for i in days:
@@ -98,3 +103,4 @@ while True:
 	
 	elif has_Run==True and time.hour != schedule.hour:
 		has_Run=False
+
