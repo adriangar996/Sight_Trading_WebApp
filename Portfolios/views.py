@@ -596,7 +596,7 @@ def notificationsView(request):
 
     stock_list = StockPortfolio.objects.filter(user_id=user)
 
-    stocks = StockPortfolio.objects.filter(user_id=user)  # This returns queryset
+    stocks = StockPortfolio.objects.filter(user_id=user)  #This returns queryset
 
     for stock in stocks:
 
