@@ -52,6 +52,7 @@ def logout_user(request):
   logout(request)
   return render(request, 'landing.html')
 
+@csrf_exempt
 def signupView(request):
   '''Form support for User Registration Process'''
   if request.method == "POST":
