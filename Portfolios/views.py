@@ -19,6 +19,7 @@ import logging
 import requests
 from django.contrib import messages
 from Dashboards.models import Predictions
+from django.views.decorators.csrf import csrf_exempt
 
 
 # CREATING LOGGER
@@ -38,7 +39,7 @@ ch.setFormatter(formatter)
 # add ch to logger
 logger.addHandler(ch)
 
-
+@csrf_exempt
 @login_required
 def portfolioView(request):
 
@@ -331,7 +332,7 @@ def portfolioView(request):
         return render(request, 'portfolio.html', context)
 
 
-    
+@csrf_exempt    
 @login_required
 def watchlistView(request):
 
@@ -645,6 +646,7 @@ def notificationsView(request):
 
         return render(request, 'notifications.html', context)
 
+@csrf_exempt
 @login_required
 def settingsView(request):
     user_id = request.user.id
@@ -672,6 +674,7 @@ def settingsView(request):
     else:
         return render(request, 'settings.html') 
 
+@csrf_exempt
 @login_required
 def helpView(request):
     if request.method == "POST":

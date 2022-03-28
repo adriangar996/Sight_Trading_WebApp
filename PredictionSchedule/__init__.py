@@ -38,20 +38,20 @@ models = models_loader('ML Model','Model', days) #lodear los modelos
 #Buscar el dia y calcular 75 dias en el pasado
 
 has_Run = False
-#companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG', 'GOOG', 'AMZN', 'FB', 'RCL', 'NIO', 'NFLX', 'SNAP', 'NOK', 'SOLO']
+companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG', 'GOOG', 'AMZN', 'FB', 'RCL', 'NIO', 'NFLX', 'SNAP', 'NOK', 'SOLO']
 #print(f'Start: {start}, Last: {last}')
 
 while True:
 	#print("Has started")
 	time = datetime.datetime.today()
-	schedule = datetime.time(17,0,0)
+	schedule = datetime.time(18,0,0)
 	if time.hour == schedule.hour and has_Run==False: #change second time hour to schedule hour
 		last = datetime.date.today() 
 		td = datetime.timedelta(100)
 		start = last - td
-		SData = pd.read_csv("http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt", sep='|')
-		SData = SData[SData['Test Issue'] == 'N']	
-		companies = SData[SData['ETF']=='N']['NASDAQ Symbol'].tolist()
+		#SData = pd.read_csv("http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt", sep='|')
+		#SData = SData[SData['Test Issue'] == 'N']	
+		#companies = SData[SData['ETF']=='N']['NASDAQ Symbol'].tolist()
 		
 		for symbols in companies:
 			print(symbols)
@@ -103,4 +103,5 @@ while True:
 	
 	elif has_Run==True and time.hour != schedule.hour:
 		has_Run=False
+
 

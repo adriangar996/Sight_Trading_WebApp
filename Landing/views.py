@@ -89,6 +89,7 @@ def signupView(request):
 
 #Function to reset password set to send email to terminal for development purposes
 #For deployment, an SMTP client will be set
+@csrf_exempt
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
