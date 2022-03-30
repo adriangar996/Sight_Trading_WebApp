@@ -52,7 +52,7 @@ def portfolioView(request):
     stock_list = StockPortfolio.objects.filter(user_id=user)
 
     #Get today's date
-    today_date = time.strftime("%d.%m.%Y")
+    today_date = time.strftime("%m.%d.%Y")
 
     #Get stock the user selected from dropdown for loading to chart1 and chart2
     if request.method == 'POST':
@@ -351,7 +351,7 @@ def watchlistView(request):
     user = PortfolioUser.objects.filter(user=user_id)[0]
     watch_list = Watchlist.objects.filter(user_id=user)
 
-    today_date = time.strftime("%d.%m.%Y")
+    today_date = time.strftime("%m.%d.%Y")
 
     #Get stock the user selected from dropdown for loading to chart
     if request.method == 'POST':

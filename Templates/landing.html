@@ -81,7 +81,11 @@
                 
                 <p class="mbr-text mbr-fonts-style mbr-white display-5">
                     Worry less about making mistakes while you learn and earn more!</p>
+                {% if user.is_anonymous %}
                 <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-7" href="../signup">Sign Up!</a></div>
+                {% else %}
+                <div class="mbr-section-btn mt-3"></div>
+                {% endif %}
             </div>
         </div>
     </div>
