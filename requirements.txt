@@ -80,6 +80,6 @@ yarl==1.7.2
 yfinance==0.1.70
 zipp==3.7.0
 whitenoise
-django-sendgrid-v5
 nodejs
+django-sendgrid-v5
 tensorflow==2.8.0
