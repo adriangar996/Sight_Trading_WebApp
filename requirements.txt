@@ -69,6 +69,8 @@ threadpoolctl==3.1.0
 typing_extensions==4.1.1
 tzdata==2021.5
 urllib3==1.26.8
+wheel==0.37.1
+setuptools==60.5.0
 websocket-client==1.2.3
 websockets==9.1
 Werkzeug==2.0.3
@@ -79,4 +81,3 @@ zipp==3.7.0
 whitenoise
 nodejs
 django-sendgrid-v5
-tensorflow==2.8.0
