@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Portfolios.models import PortfolioUser
+from Dashboards.models import Theme
 import requests
 import json
 
@@ -12,6 +13,11 @@ import json
 #Extracting NASDAQ data for Dashboard Index (NASDAQ(^IXIC) Prev.close, Day Range, Year Range)
 @login_required
 def indexView(request):
+    user_id = request.user.id
+    user = PortfolioUser.objects.filter(user=user_id)[0]
+
+    #Get users theme
+    theme_user = Theme.objects.filter(user=user)
 
     url = "https://yfapi.net/v6/finance/quote"
 
@@ -36,7 +42,8 @@ def indexView(request):
     context={
       'prev_close' : prev_close,
       'day_range' : day_range,
-      'year_range' : year_range
+      'year_range' : year_range,
+      'theme_user' : theme_user
     }
 
     return render(request, 'dashboardindex.html', context)  

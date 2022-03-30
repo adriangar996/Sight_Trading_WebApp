@@ -2,34 +2,63 @@
 <!DOCTYPE html>
 <html  >
 <head>
-  
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="{% static 'assets/images/sight-logo-oficial-263x281.png' %}" type="image/x-icon">
-  <meta name="description" content="Watchlist page for SIGHT: AI Stock Market Analysis and Prediction Web Application. Keep track of stocks you're interested in.">
-  
-  
-  <title>Watch-List</title>
-  <link rel="stylesheet" href="{% static 'assets/Material-Design-Icons/css/material.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-grid.min.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-reboot.min.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/web/assets/gdpr-plugin/gdpr-styles.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/animatecss/animate.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/dropdown/css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/socicon/css/styles.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/theme/css/style.css' %}">
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="{% static 'assets/mobirise/css/mbr-additional.css' %}"><link rel="stylesheet" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" type="text/css">
-  
-  <script src="https://cdn.jsdelivr.net/npm/luxon@1.26.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.1/dist/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
-  <script src="{% static 'assets/chartjs-chart-financial.js' %}"></script>
-  
+  {% for theme in theme_user %}
+    {% if theme.color == 'dark' %}
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+      <link rel="shortcut icon" href="{% static 'assets2/images/sight-logo-oficial-263x281.png' %}" type="image/x-icon">
+      <meta name="description" content="Watchlist page for SIGHT: AI Stock Market Analysis and Prediction Web Application. Keep track of stocks you're interested in.">
+      
+      
+      <title>Watch-List</title>
+      <link rel="stylesheet" href="{% static 'assets2/Material-Design-Icons/css/material.css' %}">
+      <link rel="stylesheet" href="{% static 'assets2/bootstrap/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets2/bootstrap/css/bootstrap-grid.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets2/bootstrap/css/bootstrap-reboot.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets2/web/assets/gdpr-plugin/gdpr-styles.css' %}">
+      <link rel="stylesheet" href="{% static 'assets2/animatecss/animate.css' %}">
+      <link rel="stylesheet" href="{% static 'assets2/dropdown/css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'assets2/socicon/css/styles.css' %}">
+      <link rel="stylesheet" href="{% static 'assets2/theme/css/style.css' %}">
+      <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+      <link rel="preload" as="style" href="{% static 'assets2/mobirise/css/mbr-additional.css' %}"><link rel="stylesheet" href="{% static 'assets2/mobirise/css/mbr-additional.css' %}" type="text/css">
+      
+      <script src="https://cdn.jsdelivr.net/npm/luxon@1.26.0"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.1/dist/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+      <script src="{% static 'assets2/chartjs-chart-financial.js' %}"></script>
+    {% else %}
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+      <link rel="shortcut icon" href="{% static 'assets/images/sight-logo-oficial-263x281.png' %}" type="image/x-icon">
+      <meta name="description" content="Watchlist page for SIGHT: AI Stock Market Analysis and Prediction Web Application. Keep track of stocks you're interested in.">
+      
+      
+      <title>Watch-List</title>
+      <link rel="stylesheet" href="{% static 'assets/Material-Design-Icons/css/material.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-grid.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-reboot.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/web/assets/gdpr-plugin/gdpr-styles.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/animatecss/animate.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/dropdown/css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/socicon/css/styles.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/theme/css/style.css' %}">
+      <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+      <link rel="preload" as="style" href="{% static 'assets/mobirise/css/mbr-additional.css' %}"><link rel="stylesheet" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" type="text/css">
+      
+      <script src="https://cdn.jsdelivr.net/npm/luxon@1.26.0"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.1/dist/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+      <script src="{% static 'assets/chartjs-chart-financial.js' %}"></script>
+    {% endif %}
+  {% endfor %}
   
 
 </head>
@@ -96,7 +125,7 @@
                                 {% endfor %}
                             </select></div>
                         </div>
-                        <button type="submit" class="btn btn-info">Load To Chart</button>
+                        <button type="submit" class="btn btn-primary">Load To Chart</button>
                           </form>
                     </div>
                         
@@ -123,7 +152,13 @@
                               </div>
                               <h5 class="card-header text-center">{{choice1}} Predictions</h5>
                             <div class="table-responsive-xl">
-                            <table class="table table-striped table-hover">
+                            {% for theme in theme_user %}
+                              {% if theme.color == 'dark' %}
+                                <table class="table">
+                              {% else %}
+                                <table class="table table-striped table-hover">
+                              {% endif %}
+                            {% endfor %}
                               <thead>
                                 <tr>
                                   <th scope="col">Interval</th>
@@ -165,25 +200,49 @@
                             </table>
                             </div>
                             </div>
-                            <!-- TradingView Widget BEGIN -->
-                            <h5 class="card-header text-center">{{choice1}} News</h5>
-                            <div class="tradingview-widget-container">
-                              <div class="tradingview-widget-container__widget"></div>
-                              <div class="tradingview-widget-copyright">{{choice1}} News</div>
-                              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-                              {
-                              "feedMode": "symbol",
-                              "symbol": "'{{choice1}}'",
-                              "colorTheme": "light",
-                              "isTransparent": true,
-                              "displayMode": "regular",
-                              "height": 310,
-                              "locale": "en"
-                            }
-                              </script>
-                            </div>
-                          </div>
-                            <!-- TradingView Widget END -->
+                            {% for theme in theme_user %}
+                              {% if theme.color == 'dark' %}
+                                <!-- TradingView Widget BEGIN -->
+                                <h5 class="card-header text-center">{{choice1}} News</h5>
+                                <div class="tradingview-widget-container">
+                                  <div class="tradingview-widget-container__widget"></div>
+                                  <div class="tradingview-widget-copyright">{{choice1}} News</div>
+                                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                                  {
+                                  "feedMode": "symbol",
+                                  "symbol": "'{{choice1}}'",
+                                  "colorTheme": "dark",
+                                  "isTransparent": true,
+                                  "displayMode": "regular",
+                                  "height": 310,
+                                  "locale": "en"
+                                }
+                                  </script>
+                                </div>
+                              </div>
+                                <!-- TradingView Widget END -->
+                              {% else %}
+                                <!-- TradingView Widget BEGIN -->
+                                <h5 class="card-header text-center">{{choice1}} News</h5>
+                                <div class="tradingview-widget-container">
+                                  <div class="tradingview-widget-container__widget"></div>
+                                  <div class="tradingview-widget-copyright">{{choice1}} News</div>
+                                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                                  {
+                                  "feedMode": "symbol",
+                                  "symbol": "'{{choice1}}'",
+                                  "colorTheme": "light",
+                                  "isTransparent": true,
+                                  "displayMode": "regular",
+                                  "height": 310,
+                                  "locale": "en"
+                                }
+                                  </script>
+                                </div>
+                              </div>
+                                <!-- TradingView Widget END -->
+                              {% endif %}
+                            {% endfor %}
                     </div>
                     
                   </div>
@@ -194,12 +253,18 @@
                             <h5 class="card-header text-center">Watched Stocks</h5>
                             <div class="card-body">
                                 <div>
-                                <button class="btn btn-info" href="#" data-toggle="modal" data-bs-toggle="modal" data-target="#mbr-popup-59" data-bs-target="#mbr-popup-59">
+                                <button class="btn btn-primary" href="#" data-toggle="modal" data-bs-toggle="modal" data-target="#mbr-popup-59" data-bs-target="#mbr-popup-59">
     +Add Stock
   </button>
   </div>
                                 <div class="table-responsive-xl">
-                                    <table class="table table-striped table-hover">
+                                    {% for theme in theme_user %}
+                                      {% if theme.color == 'dark' %}
+                                        <table class="table">
+                                      {% else %}
+                                        <table class="table table-striped table-hover">
+                                      {% endif %}
+                                    {% endfor %}
                                         <thead>
                                           <tr>
                                             <th scope="col">Delete</th>
@@ -229,7 +294,7 @@
                                                 <td class="align-middle text-danger">-{{stock.change}}%</td>
                                             {% endif %}
                                             {% if stock.signal == 'WAIT' %}
-                                              <td class="align-middle text-info">{{stock.signal}}</td>
+                                              <td class="align-middle text-primary">{{stock.signal}}</td>
                                             {% else %}
                                               <td class="align-middle text-success">{{stock.signal}}</td>
                                             {% endif %}

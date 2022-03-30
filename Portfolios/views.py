@@ -19,6 +19,7 @@ import logging
 import requests
 from django.contrib import messages
 from Dashboards.models import Predictions
+from Dashboards.models import Theme
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -67,6 +68,9 @@ def portfolioView(request):
 
     #Get predictions from DB
     pred_list = Predictions.objects.filter(symbol=choice1)
+
+    #Get users theme
+    theme_user = Theme.objects.filter(user=user)
 
     #Get stock to be added to portfolio from user
     if 'add_stock' in request.POST:
@@ -159,7 +163,8 @@ def portfolioView(request):
                                 'choice1' : choice1,
                                 'candlestick1' : candlestick1,
                                 'chart_values1' : chart_values1,
-                                'pred_list' : pred_list
+                                'pred_list' : pred_list,
+                                'theme_user' : theme_user
                             }
                             return render(request, 'portfolio.html', context)
 
@@ -185,7 +190,8 @@ def portfolioView(request):
                             'choice1' : choice1,
                             'candlestick1' : candlestick1,
                             'chart_values1' : chart_values1,
-                            'pred_list' : pred_list
+                            'pred_list' : pred_list,
+                            'theme_user' : theme_user
                         }
                         return render(request, 'portfolio.html', context)
 
@@ -210,7 +216,8 @@ def portfolioView(request):
                         'choice1' : choice1,
                         'candlestick1' : candlestick1,
                         'chart_values1' : chart_values1,
-                        'pred_list' : pred_list
+                        'pred_list' : pred_list,
+                        'theme_user' : theme_user
                     }
                     return render(request, 'portfolio.html', context)
 
@@ -224,7 +231,8 @@ def portfolioView(request):
                     'choice1' : choice1,
                     'candlestick1' : candlestick1,
                     'chart_values1' : chart_values1,
-                    'pred_list' : pred_list
+                    'pred_list' : pred_list,
+                    'theme_user' : theme_user
                 }
                 return render(request, 'portfolio.html', context)
 
@@ -260,7 +268,8 @@ def portfolioView(request):
                 'choice1' : choice1,
                 'candlestick1' : candlestick1,
                 'chart_values1' : chart_values1,
-                'pred_list' : pred_list
+                'pred_list' : pred_list,
+                'theme_user' : theme_user
             }
             return render(request, 'portfolio.html', context)
 
@@ -324,7 +333,8 @@ def portfolioView(request):
             'choice1' : choice1,
             'candlestick1' : candlestick1,
             'chart_values1' : chart_values1,
-            'pred_list' : pred_list
+            'pred_list' : pred_list,
+            'theme_user' : theme_user
         }
 
         logger.info('Refreshing stock list')
@@ -357,6 +367,9 @@ def watchlistView(request):
 
     #Get predictions from DB
     pred_list = Predictions.objects.filter(symbol=choice1)
+
+    #Get users theme
+    theme_user = Theme.objects.filter(user=user)
     
     if 'add_stock' in request.POST:
 
@@ -431,7 +444,8 @@ def watchlistView(request):
                                 'choice1' : choice1,
                                 'candlestick3' : candlestick3,
                                 'chart_values3' : chart_values3,
-                                'pred_list' : pred_list
+                                'pred_list' : pred_list,
+                                'theme_user' : theme_user
                             }
                             return render(request, 'watchlist.html', context)
 
@@ -446,7 +460,8 @@ def watchlistView(request):
                             'choice1' : choice1,
                             'candlestick3' : candlestick3,
                             'chart_values3' : chart_values3,
-                            'pred_list' : pred_list
+                            'pred_list' : pred_list,
+                            'theme_user' : theme_user
                         }
                         return render(request, 'watchlist.html', context)
 
@@ -471,7 +486,8 @@ def watchlistView(request):
                         'choice1' : choice1,
                         'candlestick3' : candlestick3,
                         'chart_values3' : chart_values3,
-                        'pred_list' : pred_list
+                        'pred_list' : pred_list,
+                        'theme_user' : theme_user
                     }
                     return render(request, 'watchlist.html', context)
 
@@ -485,7 +501,8 @@ def watchlistView(request):
                     'choice1' : choice1,
                     'candlestick3' : candlestick3,
                     'chart_values3' : chart_values3,
-                    'pred_list' : pred_list
+                    'pred_list' : pred_list,
+                    'theme_user' : theme_user
                 }
                 return render(request, 'watchlist.html', context)
 
@@ -521,7 +538,8 @@ def watchlistView(request):
                 'choice1' : choice1,
                 'candlestick3' : candlestick3,
                 'chart_values3' : chart_values3,
-                'pred_list' : pred_list
+                'pred_list' : pred_list,
+                'theme_user' : theme_user
             }
             return render(request, 'watchlist.html', context)
 
@@ -579,7 +597,8 @@ def watchlistView(request):
             'choice1' : choice1,
             'candlestick3' : candlestick3,
             'chart_values3' : chart_values3,
-            'pred_list' : pred_list
+            'pred_list' : pred_list,
+            'theme_user' : theme_user
         }
 
         logger.info('Refreshing watchlist')
@@ -599,59 +618,75 @@ def notificationsView(request):
 
     stocks = StockPortfolio.objects.filter(user_id=user)  #This returns queryset
 
-    for stock in stocks:
+    #Get users theme
+    theme_user = Theme.objects.filter(user=user)
 
-        url = "https://yfapi.net/v6/finance/quote"
+    if request.method == 'POST':
+        x = 0
 
-        querystring = {"symbols":stock.symbol}
+    else:
 
-        headers = {
-            'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"  
-        }
+        for stock in stocks:
 
-        r = requests.request("GET", url, headers=headers, params=querystring)
-        data = r.json()
+            url = "https://yfapi.net/v6/finance/quote"
 
-        response = data['quoteResponse']
-        result = response['result']
+            querystring = {"symbols":stock.symbol}
 
-        for i in result:
+            headers = {
+                'x-api-key': "iFc6RqsSZ31mlsJY7frhf3RkQbjyn4325Dztkxy2"  
+            }
 
-            stock.price = decimal.Decimal(i['regularMarketPrice'])
-            stock.change = i['regularMarketChangePercent']
+            r = requests.request("GET", url, headers=headers, params=querystring)
+            data = r.json()
 
-        gain_loss = (stock.shares_owned * stock.price) - (stock.shares_owned * stock.buying_price)
-        stock.gain_loss = gain_loss
+            response = data['quoteResponse']
+            result = response['result']
 
-        pred = Predictions.objects.get(symbol=stock.symbol)
-        pred_day90 = pred.day90
-        if stock.buying_price < stock.price and stock.buying_price < pred_day90:
-            signal = 'SELL OR HOLD'
-        elif stock.buying_price > stock.price and stock.buying_price < pred_day90:
-            signal = 'HOLD'
-        elif stock.buying_price < stock.price and stock.buying_price > pred_day90:
-            signal = 'SELL'
-        elif stock.buying_price > stock.price and  stock.buying_price > pred_day90:
-            signal = 'HOLD'
-        stock.signal = signal
+            for i in result:
 
-        # update current lines
-        stock.save(update_fields=['price', 'change', 'gain_loss', 'signal'])
+                stock.price = decimal.Decimal(i['regularMarketPrice'])
+                stock.change = i['regularMarketChangePercent']
+
+            gain_loss = (stock.shares_owned * stock.price) - (stock.shares_owned * stock.buying_price)
+            stock.gain_loss = gain_loss
+
+            pred = Predictions.objects.get(symbol=stock.symbol)
+            pred_day90 = pred.day90
+            if stock.buying_price < stock.price and stock.buying_price < pred_day90:
+                signal = 'SELL OR HOLD'
+            elif stock.buying_price > stock.price and stock.buying_price < pred_day90:
+                signal = 'HOLD'
+            elif stock.buying_price < stock.price and stock.buying_price > pred_day90:
+                signal = 'SELL'
+            elif stock.buying_price > stock.price and  stock.buying_price > pred_day90:
+                signal = 'HOLD'
+            stock.signal = signal
+
+            # update current lines
+            stock.save(update_fields=['price', 'change', 'gain_loss', 'signal'])
 
 
-        context={
-            'stock_list' : stock_list,
-            'today_date' : today_date,
-        }
+            context={
+                'stock_list' : stock_list,
+                'today_date' : today_date,
+                'theme_user' : theme_user
+            }
 
-        return render(request, 'notifications.html', context)
+            return render(request, 'notifications.html', context)
 
 @csrf_exempt
 @login_required
 def settingsView(request):
     user_id = request.user.id
     users = User.objects.filter(id=user_id)[0]
+    user = PortfolioUser.objects.filter(user=user_id)[0]
+
+    #Get users theme
+    theme_user = Theme.objects.filter(user=user)
     
+    context={
+        'theme_user' : theme_user
+    }
     #Change users password
     u = User.objects.get(username=users.username)
     if request.method == "POST":
@@ -662,21 +697,53 @@ def settingsView(request):
         messages.success(request, 'Your password has been changed. Please log back in.')
         return redirect('Landing:login')
 
-        
-    #Change users email/username
-    # if request.method == "POST":
-    #     change_email = request.POST.get('change_email', '')
-    #     u.username = change_email
-    #     u.save()
 
-    #     messages.success(request, 'Your email/username has been changed. Please log back in.')
-    #     return redirect('Landing:login')
+        
     else:
-        return render(request, 'settings.html') 
+        return render(request, 'settings.html', context)
+
+@csrf_exempt
+def theme(request):
+    user_id = request.user.id
+    user = PortfolioUser.objects.filter(user=user_id)[0]
+
+    color = request.GET.get('color')
+
+    if color == 'dark':
+        if Theme.objects.filter(user_id=user).exists():
+            user_theme1 = Theme.objects.get(user_id=user)
+            user_theme1.user_id = user
+            user_theme1.color = 'dark'
+            user_theme1.save()
+        else:
+            user1 = Theme(user=user, color='dark')
+            user1.save()
+
+    elif color == 'light':
+        if Theme.objects.filter(user_id=user).exists():
+            user_theme2 = Theme.objects.get(user_id=user)
+            user_theme2.user_id = user
+            user_theme2.color = 'light'
+            user_theme2.save()
+        else:
+            user2 = Theme(user_id=user, color='light')
+            user2.save()
+
+    return redirect('Portfolios:settings')
 
 @csrf_exempt
 @login_required
 def helpView(request):
+    user_id = request.user.id
+    user = PortfolioUser.objects.filter(user=user_id)[0]
+
+    #Get users theme
+    theme_user = Theme.objects.filter(user=user)
+
+    context={
+        'theme_user' : theme_user
+    }
+
     if request.method == "POST":
         name = request.POST.get('name', '')
         phone = request.POST.get('phone', '')
@@ -705,7 +772,7 @@ def helpView(request):
 			
 	
 
-    return render(request, 'help.html')       
+    return render(request, 'help.html', context)       
 
 
 
