@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-9kwujr&k898n(s-lc9v%6pw%syg%4k#u*6$2k(-nh)qf=b6c4g'
 
-# SECURITY WARNING: don't run with debug turned on in production
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ['sightstockapp.azurewebsites.net']
