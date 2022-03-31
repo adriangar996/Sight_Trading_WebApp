@@ -621,10 +621,10 @@ def notificationsView(request):
     #Get users theme
     theme_user = Theme.objects.filter(user=user)
 
-    if request.method == 'POST':
-        x = 0
+    #if request.method == 'POST':
+        #x = 0
 
-    else:
+    if stocks.exists():
 
         for stock in stocks:
 
@@ -673,6 +673,12 @@ def notificationsView(request):
             }
 
             return render(request, 'notifications.html', context)
+    else:
+        context={
+          'theme_user' : theme_user,
+          'today_date' : today_date, 
+        }
+        return render(request, 'notifications.html', context)
 
 @csrf_exempt
 @login_required

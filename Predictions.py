@@ -14,7 +14,7 @@ import joblib
 
 #In order to access Django app DB with standalone python script this section must be included 
 import sys, os, django
-#sys.path.append("/Users/17874/Projects\Capstone_Sight") #here store is root folder(means parent).
+sys.path.append("/Users/17874/Projects\Capstone_Sight") #here store is root folder(means parent).
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Sight.settings")
 django.setup()
 from Dashboards.models import Predictions
@@ -39,7 +39,7 @@ has_Run = False
 while True:
 	#print("Has started")
 	time = datetime.datetime.today()
-	schedule = datetime.time(17,0,0)
+	schedule = datetime.time(0,0,0)
 	if time.hour == schedule.hour and has_Run==False: #change second time hour to schedule hour
 		last = datetime.date.today() 
 		td = datetime.timedelta(100)
@@ -65,8 +65,8 @@ while True:
 					print(f'Day {days[i]}: {predINV[i]}')
 				predINV = np.reshape(predINV,(-1))
 				predINV = predINV.tolist()
-				if predINV != decimal:
-						predINV == 0
+				if predINV[i] != decimal:
+					predINV == 0
 				else: 
 					predINV = predINV
 

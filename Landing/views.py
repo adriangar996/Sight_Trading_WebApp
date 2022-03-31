@@ -120,6 +120,13 @@ def signupView(request):
     # Create a User and redirect to login
     user = User.objects.create_user(first_name=f_name, last_name=l_name, username=email, password=password)
     PortfolioUser.objects.create(user=user, first_name=f_name, last_name=l_name)
+
+    #Assign default theme to user (light)
+    default_theme = Theme(
+      user=PortfolioUser.objects.get(user=user),
+      color='light'
+    )
+    default_theme.save()
     return render(request, 'registration/login.html')
   else:
     # Display registration form
