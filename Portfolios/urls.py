@@ -13,5 +13,6 @@ urlpatterns = [
     path('settings/', views.settingsView, name="settings"),
     path('help/', views.helpView, name="help"),
     path('theme/', views.theme, name="theme"),
+    path('email_alert/', views.email_alert, name="email_alert"),
 
 ]

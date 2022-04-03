@@ -16,3 +16,8 @@ class Theme(models.Model):
   '''Theme table to maintain the users theme of choice'''
   user = models.ForeignKey(PortfolioUser, on_delete=models.CASCADE)
   color = models.CharField(max_length=1000)
+
+class Notifications(models.Model):
+  '''Notifications table to maintain the status'''
+  user = models.ForeignKey(PortfolioUser, on_delete=models.CASCADE)
+  status = models.CharField(max_length=1000)

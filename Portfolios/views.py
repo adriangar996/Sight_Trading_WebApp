@@ -1,13 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-from django.db.models.query_utils import Q
-from django.utils.http import urlsafe_base64_encode
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.encoding import force_bytes
 from django.contrib.auth.models import User
 from Portfolios.models import StockPortfolio, PortfolioUser
 from Portfolios.models import Watchlist
@@ -20,6 +15,7 @@ import requests
 from django.contrib import messages
 from Dashboards.models import Predictions
 from Dashboards.models import Theme
+from Dashboards.models import Notifications
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -724,6 +720,7 @@ def theme(request):
         else:
             user1 = Theme(user=user, color='dark')
             user1.save()
+        messages.success(request, 'Your theme has been changed to dark mode.')
 
     elif color == 'light':
         if Theme.objects.filter(user_id=user).exists():
@@ -734,6 +731,38 @@ def theme(request):
         else:
             user2 = Theme(user_id=user, color='light')
             user2.save()
+        messages.success(request, 'Your theme has been changed to light mode.')
+
+    return redirect('Portfolios:settings')
+
+@csrf_exempt
+def email_alert(request):
+    user_id = request.user.id
+    user = PortfolioUser.objects.filter(user=user_id)[0]
+
+    choice = request.GET.get('choice')
+
+    if choice == 'On':
+        if Notifications.objects.filter(user_id=user).exists():
+            user_choice1 = Notifications.objects.get(user_id=user)
+            user_choice1.user_id = user
+            user_choice1.status = 'On'
+            user_choice1.save()
+        else:
+            user_alert1 = Notifications(user=user, status='On')
+            user_alert1.save()
+        messages.success(request, 'Your email notifications are On.')
+
+    elif choice == 'Off':
+        if Notifications.objects.filter(user_id=user).exists():
+            user_choice2 = Notifications.objects.get(user_id=user)
+            user_choice2.user_id = user
+            user_choice2.status = 'Off'
+            user_choice2.save()
+        else:
+            user_alert2 = Notifications(user=user, status='Off')
+            user_alert2.save()
+        messages.success(request, 'Your email notifications are Off.')
 
     return redirect('Portfolios:settings')
 

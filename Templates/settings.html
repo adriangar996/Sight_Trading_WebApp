@@ -142,23 +142,24 @@
             </div>
             <hr class="my-4">
             <strong class="mb-0">Notifications and Alerts</strong>
-            <p>Manage your notifications and alerts.</p>
+            <p>Manage your email notifications and alerts.</p>
             <div class="list-group mb-5 shadow">
                 <div class="list-group-item">
                     <div class="row align-items-center">
                         <div class="col">
                             <strong class="mb-0">On Every Change</strong>
-                            <p class="text-muted mb-0">Alert on changes in any stock detail information.</p>
+                            <p class="text-muted mb-0">Alert on changes in any portfolio stock.</p>
                         </div>
                         <div class="col-auto">
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="alert1" checked="">
+                                <!--<input type="checkbox" class="custom-control-input" id="alert1" checked="">-->
+                                <a href="/email_alert?choice=On">On</a> | <a href="/email_alert?choice=Off">Off</a>
                                 <span class="custom-control-label"></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="list-group-item">
+                <!--<div class="list-group-item">
                     <div class="row align-items-center">
                         <div class="col">
                             <strong class="mb-0">Only on Prediction Change</strong>
@@ -171,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
             
             <hr class="my-4">
@@ -187,7 +188,7 @@
                         <div class="col-auto">
                             <div class="custom-control custom-switch">
                                 <!--<input type="checkbox" class="custom-control-input" id="alert3">-->
-                                <a href="/theme?color=dark">Dark Mode</a>
+                                <a href="/theme?color=dark">Set to Dark</a>
                                 <span class="custom-control-label"></span>
                             </div>
                         </div>
@@ -201,7 +202,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="custom-control custom-switch">
-                                <a href="/theme?color=light">Light Mode</a>
+                                <a href="/theme?color=light">Set to Light</a>
                                 <span class="custom-control-label"></span>
                             </div>
                         </div>

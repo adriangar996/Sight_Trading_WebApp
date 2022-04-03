@@ -1,0 +1,13 @@
+{% autoescape off %}
+Hello,
+
+You have new information regarding stocks in your portfolio. To view your notifications, click the link below.
+
+https://sightstockapp.azurewebsites.net/notifications/
+
+If you do not wish to receive notifications, you can simply turn off notifications in your account settings.
+
+Sincerely,
+The Sight Team
+
+{% endautoescape %}
