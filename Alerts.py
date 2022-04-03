@@ -1,6 +1,6 @@
 #In order to access Django app DB with standalone python script this section must be included 
 import sys, os, django
-#sys.path.append("/Users/17874/Projects\Capstone_Sight") #here store is root folder(means parent).
+#sys.path.append("/Users/17874/Projects\Capstone_Sight") #here store is root folder(means parent)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Sight.settings")
 django.setup()
 
