@@ -13,8 +13,7 @@ import datetime
 import joblib
 
 #In order to access Django app DB with standalone python script this section must be included 
-import sys, os, django
-sys.path.append("/Users/17874/Projects\Capstone_Sight") #here store is root folder(means parent).
+import os, django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Sight.settings")
 django.setup()
 from Dashboards.models import Predictions
@@ -39,7 +38,7 @@ has_Run = False
 while True:
 	#print("Has started")
 	time = datetime.datetime.today()
-	schedule = datetime.time(0,0,0)
+	schedule = datetime.time(17,0,0)
 	if time.hour == schedule.hour and has_Run==False: #change second time hour to schedule hour
 		last = datetime.date.today() 
 		td = datetime.timedelta(100)
@@ -65,32 +64,20 @@ while True:
 					print(f'Day {days[i]}: {predINV[i]}')
 				predINV = np.reshape(predINV,(-1))
 				predINV = predINV.tolist()
-				if predINV[i] != decimal:
-					predINV == 0
-				else: 
-					predINV = predINV
 
-				#Code to run if Predictions table in DB is empty
-				#pred_to_db = Predictions(symbol=symbols, day1=predINV[0],  day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
-				#pred_to_db.save()
 				
-				#Get all stocks from predictions table in DB
-				stocks = Predictions.objects.all()
-
-				#Access all stocks in stocks variable and assign them the new predictions
-				for ticker in stocks:
-					
-				
-						
-					ticker.symbol = symbols
-					ticker.day1 = predINV[0]
-					ticker.day5 = predINV[1]
-					ticker.day14 = predINV[2]
-					ticker.day30 = predINV[3]
-					ticker.day90 = predINV[4]
-
-				#Save new predictions to DB and add a new stock if any
-				ticker.save(update_fields=['symbol', 'day1', 'day5', 'day14', 'day30', 'day90'])
+				if Predictions.objects.filter(symbol=symbols).exists():
+					stock = Predictions.objects.get(symbol=symbols)
+					stock.symbol = symbols,
+					stock.day1 = predINV[0],
+					stock.day5 = predINV[1],
+					stock.day14 = predINV[2],
+					stock.day30 = predINV[3],
+					stock.day90 = predINV[4],
+					stock.save()
+				else:
+					stocknew = Predictions(symbol=symbols, day1=predINV[0],  day5=predINV[1], day14=predINV[2], day30=predINV[3], day90=predINV[4])
+					stocknew.save()
 
 			
 			del data 

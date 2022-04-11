@@ -95,6 +95,7 @@ def portfolioView(request):
                         response = data['quoteResponse']
                         result = response['result']
 
+                        #Get data from JSON file
                         for i in result:
 
                             new_stock_price = i['regularMarketPrice']
@@ -103,7 +104,7 @@ def portfolioView(request):
                             shares_owned = form.cleaned_data['stocks_bought']
                             buying_price = form.cleaned_data['buying_price']
 
-
+                            #Insert stock data into DB
                             stock_to_db = StockPortfolio(
                                             user=user,
                                             symbol=new_stock.upper(),
@@ -120,6 +121,7 @@ def portfolioView(request):
                             messages.success(request, new_stock.upper() + ' succesfully added to portfolio!')
                             add_success_message = "Stock successfully added to portfolio!"
 
+                            #Determine gain or loss amount
                             stock = StockPortfolio.objects.get( user=user, symbol=new_stock.upper())
                             stocks = stock.shares_owned
                             bprice = stock.buying_price
@@ -127,6 +129,7 @@ def portfolioView(request):
                             gain_loss = (stocks * price) - (stocks * bprice)
                             stock.gain_loss = gain_loss
 
+                            #Determine signals based on prediction, current price and buying price
                             pred = Predictions.objects.get(symbol=new_stock.upper())
                             pred_day90 = pred.day90
                             if stock.buying_price < stock.price and stock.buying_price < pred_day90:
@@ -166,6 +169,7 @@ def portfolioView(request):
 
                     except Exception:  # if symbol is not correct
                         pass
+                        messages.error(request, 'Insert correct symbol!')
                         error_message = "Insert correct symbol!"
 
                         for stock in stock_list:        
@@ -192,6 +196,7 @@ def portfolioView(request):
                         return render(request, 'portfolio.html', context)
 
                 else:  # if symbol is already in your portfolio
+                    messages.error(request, 'Stock is already in your portfolio!')
                     stock_exists_message = "Stock is already in your portfolio!"
 
                     for stock in stock_list:        
@@ -218,7 +223,8 @@ def portfolioView(request):
                     return render(request, 'portfolio.html', context)
 
             else:  # if form was incorrectly filled in
-                error_message = "Invalid form!"
+                messages.error(request, 'Invalid Form!')
+                error_message = "Invalid Form!"
 
                 context = {
                     'stock_list': stock_list,
@@ -399,7 +405,7 @@ def watchlistView(request):
                             new_stock_name = i['shortName']
                             new_stock_change = i['regularMarketChangePercent']
 
-
+                            #Insert stock to DB
                             stock_to_db = Watchlist(
                                             user=user,
                                             symbol=new_stock.upper(),
@@ -412,6 +418,7 @@ def watchlistView(request):
                             messages.success(request, new_stock.upper() + ' succesfully added to watchlist!')
                             add_success_message = "Stock successfully added to watchlist!"
 
+                            #Determine suggestion based on prediction and current price
                             stock = Watchlist.objects.get( user=user, symbol=new_stock.upper())
                             pred = Predictions.objects.get(symbol=stock.symbol)
                             pred_day90 = pred.day90
@@ -447,6 +454,7 @@ def watchlistView(request):
 
                     except Exception:  # if symbol is not correct
                         pass
+                        messages.error(request, 'Insert correct symbol!')
                         error_message = "Insert correct symbol!"
 
                         context = {
@@ -462,7 +470,8 @@ def watchlistView(request):
                         return render(request, 'watchlist.html', context)
 
                 else:  # if symbol is already in your watchlist
-                    stock_exists_message = "Stock is already in watchlist!"
+                    messages.error(request, 'Stock is already in your watchlist!')
+                    stock_exists_message = "Stock is already in your watchlist!"
 
                     for stock in watch_list:        
                         choice1 = stock.symbol  
@@ -488,6 +497,7 @@ def watchlistView(request):
                     return render(request, 'watchlist.html', context)
 
             else:  # if form was incorrectly filled in
+                messages.error(request, 'Invalid Form!')
                 error_message = "Invalid form!"
 
                 context = {
@@ -617,9 +627,7 @@ def notificationsView(request):
     #Get users theme
     theme_user = Theme.objects.filter(user=user)
 
-    #if request.method == 'POST':
-        #x = 0
-
+    #If stockexists within user portfolio, update and render to app
     if stocks.exists():
 
         for stock in stocks:
@@ -710,24 +718,29 @@ def theme(request):
     user = PortfolioUser.objects.filter(user=user_id)[0]
 
     color = request.GET.get('color')
-
+    #If user choice is dark.
     if color == 'dark':
+        #If a theme exists, update field with new choice.
         if Theme.objects.filter(user_id=user).exists():
             user_theme1 = Theme.objects.get(user_id=user)
             user_theme1.user_id = user
             user_theme1.color = 'dark'
             user_theme1.save()
+        #If user doesn't have a theme, assign new theme.
         else:
             user1 = Theme(user=user, color='dark')
             user1.save()
         messages.success(request, 'Your theme has been changed to dark mode.')
 
+    #If user choice is light
     elif color == 'light':
+        #If a theme exists, update field with new choice.
         if Theme.objects.filter(user_id=user).exists():
             user_theme2 = Theme.objects.get(user_id=user)
             user_theme2.user_id = user
             user_theme2.color = 'light'
             user_theme2.save()
+        #If user doesn't have a theme, assign new theme.
         else:
             user2 = Theme(user_id=user, color='light')
             user2.save()
@@ -741,24 +754,29 @@ def email_alert(request):
     user = PortfolioUser.objects.filter(user=user_id)[0]
 
     choice = request.GET.get('choice')
-
+    #If user choice is notifications On.
     if choice == 'On':
+        #If user has a choice, update with new one.
         if Notifications.objects.filter(user_id=user).exists():
             user_choice1 = Notifications.objects.get(user_id=user)
             user_choice1.user_id = user
             user_choice1.status = 'On'
             user_choice1.save()
+        #If user dosn't have a choice, set new.
         else:
             user_alert1 = Notifications(user=user, status='On')
             user_alert1.save()
         messages.success(request, 'Your email notifications are On.')
 
+    #If user choice is notifications Off.
     elif choice == 'Off':
+        #If user has a choice, update with new one.
         if Notifications.objects.filter(user_id=user).exists():
             user_choice2 = Notifications.objects.get(user_id=user)
             user_choice2.user_id = user
             user_choice2.status = 'Off'
             user_choice2.save()
+        #If user dosn't have a choice, set new.
         else:
             user_alert2 = Notifications(user=user, status='Off')
             user_alert2.save()
@@ -766,6 +784,7 @@ def email_alert(request):
 
     return redirect('Portfolios:settings')
 
+#Function to send email when user creates a ticket.
 @csrf_exempt
 @login_required
 def helpView(request):

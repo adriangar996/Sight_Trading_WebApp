@@ -19,6 +19,7 @@ def indexView(request):
     #Get users theme
     theme_user = Theme.objects.filter(user=user)
 
+    #Connect to yf API
     url = "https://yfapi.net/v6/finance/quote"
 
     querystring = {"symbols":"^IXIC"}
@@ -33,6 +34,7 @@ def indexView(request):
     response = data['quoteResponse']
     result = response['result']
 
+    #Get Close, Day Range & Year Range of NASDAQ
     for i in result:
 
         prev_close = i['regularMarketPreviousClose']

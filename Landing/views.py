@@ -19,29 +19,10 @@ from Dashboards.models import Theme
 
 def homeView(request):
 
-  # user_id = request.user.id
-  # user = PortfolioUser.objects.filter(user=user_id)[0]
-
-  # #Get users theme
-  # theme_user = Theme.objects.filter(user=user)
-
-  # context={
-  #   'theme_user' :theme_user
-  # }
-
   return render(request, 'landing.html')   
 
 @csrf_exempt
 def loginView(request):
-  # user_id = request.user.id
-  # user = PortfolioUser.objects.filter(user=user_id)[0]
-
-  # #Get users theme
-  # theme_user = Theme.objects.filter(user=user)
-
-  # context={
-  #   'theme_user' :theme_user
-  # }
   '''Form support for Login'''
   if request.method == "POST":
     email = request.POST.get('email', '')
@@ -83,15 +64,6 @@ def logout_user(request):
 
 @csrf_exempt
 def signupView(request):
-  # user_id = request.user.id
-  # user = PortfolioUser.objects.filter(user=user_id)[0]
-
-  # #Get users theme
-  # theme_user = Theme.objects.filter(user=user)
-
-  # context={
-  #   'theme_user' :theme_user
-  # }
   '''Form support for User Registration Process'''
   if request.method == "POST":
     # Get POST params from request
@@ -132,8 +104,7 @@ def signupView(request):
     # Display registration form
     return render(request, 'registration/signup.html')
 
-#Function to reset password set to send email to terminal for development purposes
-#For deployment, an SMTP client will be set
+#Function to reset pssword and send email with SMPTP client
 @csrf_exempt
 def password_reset_request(request):
  

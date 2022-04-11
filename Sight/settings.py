@@ -90,7 +90,7 @@ TEMPLATES = [
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-# #SENDGRID_API_KEY = os.environ.get('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')
+#SENDGRID_API_KEY = os.environ.get('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')
 SENDGRID_API_KEY ='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'
 
 SENDGRID_SANDBOX_MODE_IN_DEBUG=False
@@ -107,13 +107,25 @@ WSGI_APPLICATION = 'Sight.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+#SQLite3
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+#PostgreSQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dbazure',
+        'USER': 'dbadmin',
+        'PASSWORD': 'Sight2022',
+        'HOST': 'sightserver.postgres.database.azure.com',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

@@ -1,12 +1,8 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 import yfinance
 import plotly.graph_objects as go
 from plotly.offline import plot
 
-#Candlestick chart in portfolio
+#Candlestick chart in Portfolio
 def candles1(choice1):
     symbol = choice1
     stock = yfinance.Ticker(symbol)
@@ -34,8 +30,6 @@ def candles1(choice1):
         )
 
     layout = figure.update_layout(
-            #autosize = False,
-            #width = 1000,
             height = 680,
             paper_bgcolor="rgb(254,217,166)",
             plot_bgcolor = 'rgb(242,242,242)',
@@ -84,8 +78,6 @@ def candles3(choice1):
         )
 
     layout = figure.update_layout(
-            #autosize = False,
-            #width = 1000,
             height = 680,
             paper_bgcolor="rgb(254,217,166)",
             plot_bgcolor = 'rgb(242,242,242)',
