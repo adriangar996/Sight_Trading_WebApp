@@ -3,11 +3,6 @@ import yfinance as yf
 #import math # For estimation
 import numpy as np # Processing data as arrays
 import pandas as pd # Used to create a dataframe that holds all data
-#from sklearn.preprocessing import MinMaxScaler # Used to scale data
-#import tensorflow as tf # Importation of library used for model creation
-#from tensorflow import keras # Importation of backend of tensorflow
-#from keras.models import Sequential # Importation of a sequentional model form
-#from keras.layers import Dense, LSTM # Importation of Neural Network layers and LSTM layers
 from keras.models import load_model # Used to load existing models
 import datetime
 import joblib
@@ -32,8 +27,6 @@ models = models_loader('ML Model','Model', days) #lodear los modelos
 #Buscar el dia y calcular 75 dias en el pasado
 
 has_Run = False
-#companies = ['TSLA', 'AAPL','SIRI','GGB','PLUG', 'GOOG', 'AMZN', 'FB', 'RCL', 'NIO', 'NFLX', 'SNAP', 'NOK', 'SOLO']
-#print(f'Start: {start}, Last: {last}')
 
 while True:
 	#print("Has started")
