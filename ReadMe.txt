@@ -8,6 +8,3 @@ Set up Project In Development Form:
 8. Make Django's database migrations: python3 manage.py makemigrations
 9. Migrate Django's database: python3 manage.py migrate
 10.Run Development Server: python3 manage.py runserver
-
-Deploy Proyect to Azure Cloud Services:
-1.
